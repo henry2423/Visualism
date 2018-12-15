@@ -8,20 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7A221C4F0950013E460 /* AppDelegate.swift */; };
-		BA95E7A521C4F0950013E460 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7A421C4F0950013E460 /* ViewController.swift */; };
 		BA95E7A821C4F0950013E460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A621C4F0950013E460 /* Main.storyboard */; };
 		BA95E7AA21C4F0960013E460 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A921C4F0960013E460 /* Assets.xcassets */; };
 		BA95E7AD21C4F0960013E460 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7AB21C4F0960013E460 /* LaunchScreen.storyboard */; };
+		BA95E7B721C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */; };
+		BA95E7B821C4F0C70013E460 /* starry_night_640x480_025.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */; };
+		BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */; };
+		BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7C621C4F2620013E460 /* VisualismViewController.swift */; };
+		BA95E7CB21C4F2F30013E460 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7C921C4F2F30013E460 /* VideoPreviewView.swift */; };
+		BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */; };
+		BA95E7DE21C4F4350013E460 /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7D921C4F4350013E460 /* OpenGLPixelBufferView.m */; };
+		BA95E7DF21C4F4350013E460 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7DA21C4F4350013E460 /* ShaderUtilities.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA95E79F21C4F0950013E460 /* Visualism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visualism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA95E7A221C4F0950013E460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA95E7A421C4F0950013E460 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BA95E7A721C4F0950013E460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA95E7A921C4F0960013E460 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA95E7AC21C4F0960013E460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA95E7AE21C4F0960013E460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_small_a03_q8.mlmodel; sourceTree = "<group>"; };
+		BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_025.mlmodel; sourceTree = "<group>"; };
+		BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StarryStyle.mlmodel; sourceTree = "<group>"; };
+		BA95E7C621C4F2620013E460 /* VisualismViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualismViewController.swift; sourceTree = "<group>"; };
+		BA95E7C921C4F2F30013E460 /* VideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
+		BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureView.swift; sourceTree = "<group>"; };
+		BA95E7D921C4F4350013E460 /* OpenGLPixelBufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLPixelBufferView.m; sourceTree = "<group>"; };
+		BA95E7DA21C4F4350013E460 /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
+		BA95E7DB21C4F4350013E460 /* Objc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridging-Header.h"; sourceTree = "<group>"; };
+		BA95E7DC21C4F4350013E460 /* OpenGLPixelBufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLPixelBufferView.h; sourceTree = "<group>"; };
+		BA95E7DD21C4F4350013E460 /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +71,64 @@
 		BA95E7A121C4F0950013E460 /* Visualism */ = {
 			isa = PBXGroup;
 			children = (
-				BA95E7A221C4F0950013E460 /* AppDelegate.swift */,
-				BA95E7A421C4F0950013E460 /* ViewController.swift */,
-				BA95E7A621C4F0950013E460 /* Main.storyboard */,
-				BA95E7A921C4F0960013E460 /* Assets.xcassets */,
-				BA95E7AB21C4F0960013E460 /* LaunchScreen.storyboard */,
+				BA95E7DB21C4F4350013E460 /* Objc-Bridging-Header.h */,
 				BA95E7AE21C4F0960013E460 /* Info.plist */,
+				BA95E7CD21C4F2FA0013E460 /* View */,
+				BA95E7CE21C4F3020013E460 /* Model */,
+				BA95E7C821C4F2BF0013E460 /* Supporting Files */,
+				BA95E7CF21C4F3140013E460 /* CoreML Model */,
+				BA95E7D821C4F4350013E460 /* Apple OpenGL Buffer View */,
 			);
 			path = Visualism;
+			sourceTree = "<group>";
+		};
+		BA95E7C821C4F2BF0013E460 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA95E7A221C4F0950013E460 /* AppDelegate.swift */,
+				BA95E7A921C4F0960013E460 /* Assets.xcassets */,
+				BA95E7AB21C4F0960013E460 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA95E7CD21C4F2FA0013E460 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */,
+				BA95E7C921C4F2F30013E460 /* VideoPreviewView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA95E7CE21C4F3020013E460 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
+				BA95E7A621C4F0950013E460 /* Main.storyboard */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BA95E7CF21C4F3140013E460 /* CoreML Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */,
+				BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */,
+				BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */,
+			);
+			path = "CoreML Model";
+			sourceTree = "<group>";
+		};
+		BA95E7D821C4F4350013E460 /* Apple OpenGL Buffer View */ = {
+			isa = PBXGroup;
+			children = (
+				BA95E7D921C4F4350013E460 /* OpenGLPixelBufferView.m */,
+				BA95E7DA21C4F4350013E460 /* ShaderUtilities.c */,
+				BA95E7DC21C4F4350013E460 /* OpenGLPixelBufferView.h */,
+				BA95E7DD21C4F4350013E460 /* ShaderUtilities.h */,
+			);
+			path = "Apple OpenGL Buffer View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +202,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA95E7A521C4F0950013E460 /* ViewController.swift in Sources */,
 				BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */,
+				BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */,
+				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
+				BA95E7B721C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */,
+				BA95E7B821C4F0C70013E460 /* starry_night_640x480_025.mlmodel in Sources */,
+				BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */,
+				BA95E7DE21C4F4350013E460 /* OpenGLPixelBufferView.m in Sources */,
+				BA95E7CB21C4F2F30013E460 /* VideoPreviewView.swift in Sources */,
+				BA95E7DF21C4F4350013E460 /* ShaderUtilities.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +365,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.Visualism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Visualism/Objc-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,6 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.Visualism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Visualism/Objc-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
