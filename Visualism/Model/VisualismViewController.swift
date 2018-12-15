@@ -14,10 +14,8 @@ class VisualismViewController: UIViewController {
     
     // Video capture parts
     var videoCapture : VideoCaptureView!
-    var previewView : VideoPreviewView!
     let model = starry_night_640x480_small_a03_q8()
-    //var ADKGLView : ADKOpenGLImageView!
-    //var metalView : MetalImageView!
+    var ADKGLView : ADKOpenGLImageView!
 
 //    // Vision parts
 //    private var analysisRequests = [VNRequest]()
@@ -26,9 +24,9 @@ class VisualismViewController: UIViewController {
         super.viewDidLoad()
         // Add preview View as a subview
         setUpCamera()
-        previewView = VideoPreviewView()
-        self.view.addSubview(previewView)
-
+        ADKGLView = ADKOpenGLImageView()
+        ADKGLView.contentMode = .scaleAspectFill
+        self.view.addSubview(ADKGLView)
     }
     
     // MARK: - Initialization
@@ -84,7 +82,7 @@ class VisualismViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        previewView.frame = view.bounds
+        ADKGLView.frame = view.bounds
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -152,7 +150,7 @@ class VisualismViewController: UIViewController {
 //            let tempImage = tempContext.createCGImage(ciImage, from: CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(predictionOutput.stylizedImage), height: CVPixelBufferGetHeight(predictionOutput.stylizedImage)))
             //let predImage = CIImage(cvPixelBuffer: (predictionOutput.stylizedImage))
             DispatchQueue.main.async {
-                self.previewView.display(buffer: predictionOutput.stylizedImage)
+                self.ADKGLView.image = CIImage(cvPixelBuffer: (predictionOutput.stylizedImage))
             }
         } catch let error as NSError {
             print("CoreML Model Error: \(error)")
