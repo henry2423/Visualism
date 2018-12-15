@@ -16,7 +16,7 @@
 		BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */; };
 		BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7C621C4F2620013E460 /* VisualismViewController.swift */; };
 		BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */; };
-		BA95E7E321C4F8450013E460 /* ADKOpenGLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E121C4F8450013E460 /* ADKOpenGLImageView.m */; };
+		BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E421C4FB600013E460 /* MetalImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +31,7 @@
 		BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StarryStyle.mlmodel; sourceTree = "<group>"; };
 		BA95E7C621C4F2620013E460 /* VisualismViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualismViewController.swift; sourceTree = "<group>"; };
 		BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureView.swift; sourceTree = "<group>"; };
-		BA95E7DB21C4F4350013E460 /* Objc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridging-Header.h"; sourceTree = "<group>"; };
-		BA95E7E121C4F8450013E460 /* ADKOpenGLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADKOpenGLImageView.m; sourceTree = "<group>"; };
-		BA95E7E221C4F8450013E460 /* ADKOpenGLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADKOpenGLImageView.h; sourceTree = "<group>"; };
+		BA95E7E421C4FB600013E460 /* MetalImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +64,11 @@
 		BA95E7A121C4F0950013E460 /* Visualism */ = {
 			isa = PBXGroup;
 			children = (
-				BA95E7DB21C4F4350013E460 /* Objc-Bridging-Header.h */,
-				BA95E7AE21C4F0960013E460 /* Info.plist */,
-				BA95E7CD21C4F2FA0013E460 /* View */,
 				BA95E7CE21C4F3020013E460 /* Model */,
+				BA95E7CD21C4F2FA0013E460 /* View */,
 				BA95E7C821C4F2BF0013E460 /* Supporting Files */,
 				BA95E7CF21C4F3140013E460 /* CoreML Model */,
-				BA95E7E021C4F8450013E460 /* AppDevCameraKit */,
+				BA95E7AE21C4F0960013E460 /* Info.plist */,
 			);
 			path = Visualism;
 			sourceTree = "<group>";
@@ -91,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */,
+				BA95E7E421C4FB600013E460 /* MetalImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,15 +109,6 @@
 				BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */,
 			);
 			path = "CoreML Model";
-			sourceTree = "<group>";
-		};
-		BA95E7E021C4F8450013E460 /* AppDevCameraKit */ = {
-			isa = PBXGroup;
-			children = (
-				BA95E7E121C4F8450013E460 /* ADKOpenGLImageView.m */,
-				BA95E7E221C4F8450013E460 /* ADKOpenGLImageView.h */,
-			);
-			path = AppDevCameraKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,9 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */,
 				BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */,
 				BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */,
-				BA95E7E321C4F8450013E460 /* ADKOpenGLImageView.m in Sources */,
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
 				BA95E7B721C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */,
 				BA95E7B821C4F0C70013E460 /* starry_night_640x480_025.mlmodel in Sources */,
@@ -355,7 +343,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.Visualism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Visualism/Objc-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,7 +363,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.Visualism;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Visualism/Objc-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
