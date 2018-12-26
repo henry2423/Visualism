@@ -1,6 +1,6 @@
 //
-//  MTKView.swift
-//  AIArt
+//  MetalImageView.swift
+//  Visualism
 //
 //  Created by Henry Huang on 12/9/18.
 //  Copyright © 2018 Henry Huang. All rights reserved.

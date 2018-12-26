@@ -7,28 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */; };
+		BA0381B421D3BBDA00019652 /* ArtCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */; };
+		BA0381BC21D3BD4C00019652 /* Lion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B621D3BD4C00019652 /* Lion.jpg */; };
+		BA0381BD21D3BD4C00019652 /* Horse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B721D3BD4C00019652 /* Horse.jpg */; };
+		BA0381BF21D3BD4C00019652 /* Old_man.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B921D3BD4C00019652 /* Old_man.jpg */; };
+		BA0381C021D3BD4C00019652 /* Avignon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381BA21D3BD4C00019652 /* Avignon.jpg */; };
+		BA0381C121D3BD4C00019652 /* Gray_tree.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381BB21D3BD4C00019652 /* Gray_tree.jpg */; };
+		BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381C221D3C41500019652 /* ArtCollectionCell.swift */; };
+		BA0381C521D3C41500019652 /* ArtCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0381C321D3C41500019652 /* ArtCollectionCell.xib */; };
+		BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */; };
+		BA0381C921D4015200019652 /* gray_tree_old.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0381C821D4015200019652 /* gray_tree_old.mlmodel */; };
+		BA0381CD21D4033D00019652 /* Composition_b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381CC21D4033D00019652 /* Composition_b.jpg */; };
 		BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7A221C4F0950013E460 /* AppDelegate.swift */; };
 		BA95E7A821C4F0950013E460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A621C4F0950013E460 /* Main.storyboard */; };
 		BA95E7AA21C4F0960013E460 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A921C4F0960013E460 /* Assets.xcassets */; };
 		BA95E7AD21C4F0960013E460 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7AB21C4F0960013E460 /* LaunchScreen.storyboard */; };
-		BA95E7B721C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */; };
-		BA95E7B821C4F0C70013E460 /* starry_night_640x480_025.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */; };
-		BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */; };
+		BA95E7B721C4F0C70013E460 /* StarryNightStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7B421C4F0C70013E460 /* StarryNightStyle.mlmodel */; };
 		BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7C621C4F2620013E460 /* VisualismViewController.swift */; };
 		BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */; };
 		BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E421C4FB600013E460 /* MetalImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AvignonStyle.mlmodel; sourceTree = "<group>"; };
+		BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionViewController.swift; sourceTree = "<group>"; };
+		BA0381B621D3BD4C00019652 /* Lion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lion.jpg; sourceTree = "<group>"; };
+		BA0381B721D3BD4C00019652 /* Horse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Horse.jpg; sourceTree = "<group>"; };
+		BA0381B921D3BD4C00019652 /* Old_man.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Old_man.jpg; sourceTree = "<group>"; };
+		BA0381BA21D3BD4C00019652 /* Avignon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Avignon.jpg; sourceTree = "<group>"; };
+		BA0381BB21D3BD4C00019652 /* Gray_tree.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gray_tree.jpg; sourceTree = "<group>"; };
+		BA0381C221D3C41500019652 /* ArtCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtCollectionCell.swift; sourceTree = "<group>"; };
+		BA0381C321D3C41500019652 /* ArtCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtCollectionCell.xib; sourceTree = "<group>"; };
+		BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GrayTreeStyle.mlmodel; sourceTree = "<group>"; };
+		BA0381C821D4015200019652 /* gray_tree_old.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = gray_tree_old.mlmodel; sourceTree = "<group>"; };
+		BA0381CC21D4033D00019652 /* Composition_b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Composition_b.jpg; sourceTree = "<group>"; };
 		BA95E79F21C4F0950013E460 /* Visualism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visualism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA95E7A221C4F0950013E460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA95E7A721C4F0950013E460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA95E7A921C4F0960013E460 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA95E7AC21C4F0960013E460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA95E7AE21C4F0960013E460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_small_a03_q8.mlmodel; sourceTree = "<group>"; };
-		BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_025.mlmodel; sourceTree = "<group>"; };
-		BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StarryStyle.mlmodel; sourceTree = "<group>"; };
+		BA95E7B421C4F0C70013E460 /* StarryNightStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = StarryNightStyle.mlmodel; sourceTree = "<group>"; };
 		BA95E7C621C4F2620013E460 /* VisualismViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualismViewController.swift; sourceTree = "<group>"; };
 		BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureView.swift; sourceTree = "<group>"; };
 		BA95E7E421C4FB600013E460 /* MetalImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalImageView.swift; sourceTree = "<group>"; };
@@ -45,6 +65,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA0381B521D3BD3200019652 /* Art Collection */ = {
+			isa = PBXGroup;
+			children = (
+				BA0381BA21D3BD4C00019652 /* Avignon.jpg */,
+				BA0381BB21D3BD4C00019652 /* Gray_tree.jpg */,
+				BA0381CC21D4033D00019652 /* Composition_b.jpg */,
+				BA0381B721D3BD4C00019652 /* Horse.jpg */,
+				BA0381B621D3BD4C00019652 /* Lion.jpg */,
+				BA0381B921D3BD4C00019652 /* Old_man.jpg */,
+			);
+			path = "Art Collection";
+			sourceTree = "<group>";
+		};
 		BA95E79621C4F0950013E460 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +101,7 @@
 				BA95E7CD21C4F2FA0013E460 /* View */,
 				BA95E7C821C4F2BF0013E460 /* Supporting Files */,
 				BA95E7CF21C4F3140013E460 /* CoreML Model */,
+				BA0381B521D3BD3200019652 /* Art Collection */,
 				BA95E7AE21C4F0960013E460 /* Info.plist */,
 			);
 			path = Visualism;
@@ -88,6 +122,8 @@
 			children = (
 				BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */,
 				BA95E7E421C4FB600013E460 /* MetalImageView.swift */,
+				BA0381C221D3C41500019652 /* ArtCollectionCell.swift */,
+				BA0381C321D3C41500019652 /* ArtCollectionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -96,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
+				BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */,
 				BA95E7A621C4F0950013E460 /* Main.storyboard */,
 			);
 			path = Model;
@@ -104,9 +141,10 @@
 		BA95E7CF21C4F3140013E460 /* CoreML Model */ = {
 			isa = PBXGroup;
 			children = (
-				BA95E7B521C4F0C70013E460 /* starry_night_640x480_025.mlmodel */,
-				BA95E7B421C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel */,
-				BA95E7B621C4F0C70013E460 /* StarryStyle.mlmodel */,
+				BA95E7B421C4F0C70013E460 /* StarryNightStyle.mlmodel */,
+				BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */,
+				BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */,
+				BA0381C821D4015200019652 /* gray_tree_old.mlmodel */,
 			);
 			path = "CoreML Model";
 			sourceTree = "<group>";
@@ -171,7 +209,14 @@
 			files = (
 				BA95E7AD21C4F0960013E460 /* LaunchScreen.storyboard in Resources */,
 				BA95E7AA21C4F0960013E460 /* Assets.xcassets in Resources */,
+				BA0381BD21D3BD4C00019652 /* Horse.jpg in Resources */,
+				BA0381BF21D3BD4C00019652 /* Old_man.jpg in Resources */,
+				BA0381C021D3BD4C00019652 /* Avignon.jpg in Resources */,
+				BA0381C521D3C41500019652 /* ArtCollectionCell.xib in Resources */,
+				BA0381C121D3BD4C00019652 /* Gray_tree.jpg in Resources */,
 				BA95E7A821C4F0950013E460 /* Main.storyboard in Resources */,
+				BA0381BC21D3BD4C00019652 /* Lion.jpg in Resources */,
+				BA0381CD21D4033D00019652 /* Composition_b.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,11 +229,14 @@
 			files = (
 				BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */,
 				BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */,
-				BA95E7B921C4F0C70013E460 /* StarryStyle.mlmodel in Sources */,
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
-				BA95E7B721C4F0C70013E460 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */,
-				BA95E7B821C4F0C70013E460 /* starry_night_640x480_025.mlmodel in Sources */,
+				BA95E7B721C4F0C70013E460 /* StarryNightStyle.mlmodel in Sources */,
+				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,
+				BA0381B421D3BBDA00019652 /* ArtCollectionViewController.swift in Sources */,
 				BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */,
+				BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */,
+				BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */,
+				BA0381C921D4015200019652 /* gray_tree_old.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
