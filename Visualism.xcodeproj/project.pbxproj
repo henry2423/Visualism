@@ -19,6 +19,7 @@
 		BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */; };
 		BA0381CD21D4033D00019652 /* Composition_b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381CC21D4033D00019652 /* Composition_b.jpg */; };
 		BA0381CF21D403BF00019652 /* ArtCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */; };
+		BA129A2F21D4D648004B99BD /* Lion_3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA129A2D21D4D648004B99BD /* Lion_3.mlmodel */; };
 		BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7A221C4F0950013E460 /* AppDelegate.swift */; };
 		BA95E7A821C4F0950013E460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A621C4F0950013E460 /* Main.storyboard */; };
 		BA95E7AA21C4F0960013E460 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A921C4F0960013E460 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GrayTreeStyle.mlmodel; sourceTree = "<group>"; };
 		BA0381CC21D4033D00019652 /* Composition_b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Composition_b.jpg; sourceTree = "<group>"; };
 		BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtCollectionModel.swift; path = Visualism/Model/ArtCollectionModel.swift; sourceTree = SOURCE_ROOT; };
+		BA129A2D21D4D648004B99BD /* Lion_3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Lion_3.mlmodel; sourceTree = "<group>"; };
 		BA95E79F21C4F0950013E460 /* Visualism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visualism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA95E7A221C4F0950013E460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA95E7A721C4F0950013E460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */,
 				BAAE778121D49316004E0245 /* HorseStyle.mlmodel */,
 				BAAE777F21D49311004E0245 /* LionStyle.mlmodel */,
+				BA129A2D21D4D648004B99BD /* Lion_3.mlmodel */,
 			);
 			path = "CoreML Model";
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */,
 				BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */,
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
+				BA129A2F21D4D648004B99BD /* Lion_3.mlmodel in Sources */,
 				BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */,
 				BA95E7B721C4F0C70013E460 /* StarryNightStyle.mlmodel in Sources */,
 				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,

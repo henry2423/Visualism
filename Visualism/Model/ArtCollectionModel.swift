@@ -27,7 +27,7 @@ enum ArtCollection: String, CaseIterable {
         case .Horse:
             return HorseStyle().model
         case .Lion:
-            return LionStyle().model
+            return Lion_3().model
         }
     }
 }

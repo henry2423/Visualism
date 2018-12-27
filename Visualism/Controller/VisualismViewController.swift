@@ -14,21 +14,28 @@ import VideoToolbox
 class VisualismViewController: UIViewController {
     
     // Note: For Art Demo Purpose - Timer
-    var timer: Timer!
+    var restartTimer: Timer?
+    var countDownTimer: Timer?
     
     // Video capture parts
     var videoCapture : VideoCaptureView!
     var model: MLModel!
     
+    // Metal View for MLModel output
+    var metalView : MetalImageView!
+    
     // Capture Image
     private var imageCaptureButton: UIButton!
     private var stylePixelBuffer: CVPixelBuffer?
     
-    // Metal View for MLModel output
-    var metalView : MetalImageView!
-    
     // Close Button
     var closeBarButton: UIButton!
+    var restartButton: UIButton!
+    var shareButton: UIButton!
+    
+    // CountDown View
+    var countDown: Int = 5
+    var countDownLabelView: UILabel!
     
     init(withStyle style: ArtCollection) {
         model = style.getMLModel
@@ -51,11 +58,11 @@ class VisualismViewController: UIViewController {
         
         // Add Close Button
         closeBarButton = UIButton()
-        closeBarButton.setImage(UIImage(named: "Icon-Close"), for: .normal)
+        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
         closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
-        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 35, height: 35)
+        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
         closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        closeBarButton.layer.cornerRadius = 35/2
+        closeBarButton.layer.cornerRadius = 45/2
         closeBarButton.layer.masksToBounds = true
         closeBarButton.isHidden = true
         self.view.addSubview(closeBarButton)
@@ -64,12 +71,52 @@ class VisualismViewController: UIViewController {
         imageCaptureButton = UIButton()
         imageCaptureButton.setImage(UIImage(named: "iconShutter"), for: .normal)
         imageCaptureButton.addTarget(self, action: #selector(imageCaptureButtonTapHandler(_:)), for: .touchUpInside)
-        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height - 150, width: 85, height: 85)
+        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height*0.85, width: 85, height: 85)
         imageCaptureButton.isHidden = true
         self.view.addSubview(imageCaptureButton)
         
+        // Add Restart Button
+        restartButton = UIButton()
+        restartButton.setImage(UIImage(named: "Icon-Close"), for: .normal)
+        restartButton.imageView?.contentMode = .scaleAspectFill
+        restartButton.addTarget(self, action: #selector(restartButtonTapHandler(_:)), for: .touchUpInside)
+        restartButton.frame = CGRect(x: UIScreen.main.bounds.midX + 10, y: UIScreen.main.bounds.height*0.85, width: 70, height: 70)
+        restartButton.isHidden = true
+        restartButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        restartButton.layer.cornerRadius = 70/2
+        restartButton.layer.masksToBounds = true
+        restartButton.isHidden = true
+        self.view.addSubview(restartButton)
+        
+        // Add Share Button
+        shareButton = UIButton()
+        shareButton.setImage(UIImage(named: "Icon-Share"), for: .normal)
+        shareButton.imageView?.contentMode = .scaleAspectFill
+        shareButton.addTarget(self, action: #selector(shareButtonTapHandler(_:)), for: .touchUpInside)
+        shareButton.frame = CGRect(x: UIScreen.main.bounds.midX - 80, y: UIScreen.main.bounds.height*0.85, width: 70, height: 70)
+        shareButton.isHidden = true
+        shareButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        shareButton.layer.cornerRadius = 70/2
+        shareButton.layer.masksToBounds = true
+        shareButton.isHidden = true
+        self.view.addSubview(shareButton)
+        
+        // Add Count Down View
+        countDownLabelView = UILabel()
+        countDownLabelView.text = "\(countDown)"
+        countDownLabelView.font = UIFont.boldSystemFont(ofSize: 80)
+        countDownLabelView.textColor = UIColor.white
+        countDownLabelView.textAlignment = .center
+        countDownLabelView.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: UIApplication.shared.statusBarFrame.height + 25, width: 80, height: 80)
+        countDownLabelView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        countDownLabelView.layer.cornerRadius = 80/2
+        countDownLabelView.layer.masksToBounds = true
+        countDownLabelView.isHidden = true
+        countDownLabelView.isHidden = true
+        self.view.addSubview(countDownLabelView)
+        
         // Activate Teardown Timer
-        self.timer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
+        self.restartTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
     }
     
     // MARK: - Initialization
@@ -88,21 +135,69 @@ class VisualismViewController: UIViewController {
     
     // MARK: - ButtonTapHandler
     @objc func imageCaptureButtonTapHandler(_ sender: UIBarButtonItem) {
+        countDownLabelView.isHidden = false
+        self.countDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(captureImage(_:)), userInfo: nil, repeats: true)
         self.imageCaptureButton.isUserInteractionEnabled = false
         self.imageCaptureButton.alpha = 0.7
-        self.videoCapture!.stop()
-        
+        self.countDownLabelView.isHidden = false
+    }
+    
+    @objc func captureImage(_ time: Timer) {
+        if countDown == 0 {
+            self.videoCapture!.stop()
+            self.imageCaptureButton.isHidden = true
+            self.shareButton.isHidden = false
+            self.restartButton.isHidden = false
+            self.countDown = 5
+            self.countDownLabelView.text = "\(countDown)"
+            self.countDownLabelView.isHidden = true
+            self.shareButtonTapHandler(UIBarButtonItem())
+            time.invalidate()
+        } else {
+            countDown = countDown - 1
+            self.countDownLabelView.text = "\(countDown)"
+        }
+    }
+    
+    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.dissmissView()
+    }
+    
+    @objc func restartButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.imageCaptureButton.isHidden = false
+        self.imageCaptureButton.isUserInteractionEnabled = true
+        self.imageCaptureButton.alpha = 1.0
+        self.shareButton.isHidden = true
+        self.restartButton.isHidden = true
+        self.videoCapture!.start()
+    }
+    
+    @objc func shareButtonTapHandler(_ sender: UIBarButtonItem) {
         // capture image
         var cgImage: CGImage?
         // using previousPixelBuffer not currentPixelBuffer is because currentPixelBuffer is set to nil when coreml do inference
         VTCreateCGImageFromCVPixelBuffer(stylePixelBuffer!, options: nil, imageOut: &cgImage)
         let image = UIImage(cgImage: cgImage!)
-        self.shareImage(image)
-    }
-    
-    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-        self.timer.invalidate()
+        
+        // set up activity view controller
+        let imageToShare = [ image ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.shareButton
+        activityViewController.popoverPresentationController?.sourceRect = self.shareButton.bounds
+        
+        // exclude some activity types from the list (optional)
+        //activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+//        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+//        activityViewController.completionWithItemsHandler = { (activity: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+//            self.imageCaptureButton.isUserInteractionEnabled = true
+//            self.imageCaptureButton.alpha = 1.0
+//            self.videoCapture!.start()
+//            self.shareButton.isHidden = true
+//            self.restartButton.isHidden = true
+//        }
+        
     }
     
     // MARK: - UI stuff
@@ -116,8 +211,13 @@ class VisualismViewController: UIViewController {
     }
     
     @objc func viewTearDown(_ time: Timer) {
+        self.dissmissView()
+    }
+    
+    func dissmissView() {
+        self.restartTimer?.invalidate()
+        self.countDownTimer?.invalidate()
         self.dismiss(animated: true, completion: nil)
-        self.timer.invalidate()
     }
     
     // MARK: - Doing inference
@@ -133,28 +233,6 @@ class VisualismViewController: UIViewController {
             print("CoreML Model Error: \(error)")
         }
         
-    }
-    
-    // MARK: - Share Activity
-    func shareImage(_ image: UIImage) {
-        
-        // set up activity view controller
-        let imageToShare = [ image ]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.imageCaptureButton
-        activityViewController.popoverPresentationController?.sourceRect = self.imageCaptureButton.bounds
-
-        // exclude some activity types from the list (optional)
-        //activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
-        activityViewController.completionWithItemsHandler = { (activity: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            self.imageCaptureButton.isUserInteractionEnabled = true
-            self.imageCaptureButton.alpha = 1.0
-            self.videoCapture!.start()
-        }
-
     }
     
 }
