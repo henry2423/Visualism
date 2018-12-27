@@ -1,0 +1,199 @@
+//
+//  ViewController.swift
+//  Visualism
+//
+//  Created by Henry Huang on 12/7/18.
+//  Copyright © 2018 Henry Huang. All rights reserved.
+//
+
+import UIKit
+import Vision
+import AVFoundation
+import VideoToolbox
+
+class VisualismViewController: UIViewController {
+    
+    // Note: For Art Demo Purpose - Timer
+    var timer: Timer!
+    
+    // Video capture parts
+    var videoCapture : VideoCaptureView!
+    var model: MLModel!
+    
+    // Capture Image
+    private var imageCaptureButton: UIButton!
+    private var stylePixelBuffer: CVPixelBuffer?
+    
+    // Metal View for MLModel output
+    var metalView : MetalImageView!
+    
+    // Close Button
+    var closeBarButton: UIButton!
+    
+    init(withStyle style: ArtCollection) {
+        model = style.getMLModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        model = AvignonStyle().model
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpCamera()
+        
+        // Add Metal Preview View as a subview
+        metalView = MetalImageView()
+        metalView.imageContentMode = .ScaleAspectFill
+        self.view.addSubview(metalView)
+        
+        // Add Close Button
+        closeBarButton = UIButton()
+        closeBarButton.setImage(UIImage(named: "Icon-Close"), for: .normal)
+        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
+        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 35, height: 35)
+        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        closeBarButton.layer.cornerRadius = 35/2
+        closeBarButton.layer.masksToBounds = true
+        closeBarButton.isHidden = true
+        self.view.addSubview(closeBarButton)
+        
+        // Add ImageCapture Button
+        imageCaptureButton = UIButton()
+        imageCaptureButton.setImage(UIImage(named: "iconShutter"), for: .normal)
+        imageCaptureButton.addTarget(self, action: #selector(imageCaptureButtonTapHandler(_:)), for: .touchUpInside)
+        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height - 150, width: 85, height: 85)
+        imageCaptureButton.isHidden = true
+        self.view.addSubview(imageCaptureButton)
+        
+        // Activate Teardown Timer
+        self.timer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
+    }
+    
+    // MARK: - Initialization
+    func setUpCamera() {
+        videoCapture = VideoCaptureView()
+        videoCapture.delegate = self
+        videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.vga640x480) { success in
+            if success {
+                // Once everything is set up, we can start capturing live video.
+                self.closeBarButton.isHidden = false
+                self.imageCaptureButton.isHidden = false
+                self.videoCapture.start()
+            }
+        }
+    }
+    
+    // MARK: - ButtonTapHandler
+    @objc func imageCaptureButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.imageCaptureButton.isUserInteractionEnabled = false
+        self.imageCaptureButton.alpha = 0.7
+        self.videoCapture!.stop()
+        
+        // capture image
+        var cgImage: CGImage?
+        // using previousPixelBuffer not currentPixelBuffer is because currentPixelBuffer is set to nil when coreml do inference
+        VTCreateCGImageFromCVPixelBuffer(stylePixelBuffer!, options: nil, imageOut: &cgImage)
+        let image = UIImage(cgImage: cgImage!)
+        self.shareImage(image)
+    }
+    
+    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+        self.timer.invalidate()
+    }
+    
+    // MARK: - UI stuff
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        metalView.frame = view.bounds
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    @objc func viewTearDown(_ time: Timer) {
+        self.dismiss(animated: true, completion: nil)
+        self.timer.invalidate()
+    }
+    
+    // MARK: - Doing inference
+    func predictUsingVision(with buffer: CVPixelBuffer) {
+        
+        do {
+            let predictionOutput = try model.prediction(from: StyleInput(image: buffer))
+            DispatchQueue.main.async { [weak self] in
+                self?.stylePixelBuffer = predictionOutput.featureValue(for: "stylizedImage")!.imageBufferValue!
+                self?.metalView.image = CIImage(cvPixelBuffer: (self?.stylePixelBuffer)!)
+            }
+        } catch let error as NSError {
+            print("CoreML Model Error: \(error)")
+        }
+        
+    }
+    
+    // MARK: - Share Activity
+    func shareImage(_ image: UIImage) {
+        
+        // set up activity view controller
+        let imageToShare = [ image ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.imageCaptureButton
+        activityViewController.popoverPresentationController?.sourceRect = self.imageCaptureButton.bounds
+
+        // exclude some activity types from the list (optional)
+        //activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+        activityViewController.completionWithItemsHandler = { (activity: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            self.imageCaptureButton.isUserInteractionEnabled = true
+            self.imageCaptureButton.alpha = 1.0
+            self.videoCapture!.start()
+        }
+
+    }
+    
+}
+
+// MARK: - VideoCaptureDelegate
+extension VisualismViewController: VideoCaptureDelegate {
+
+    func videoCapture(_ capture: VideoCaptureView, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?) {
+
+        guard let pixelBuffer = pixelBuffer else {
+            return
+        }
+        
+        self.predictUsingVision(with: pixelBuffer)
+    }
+}
+
+/// Model Prediction Input Type
+@available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
+class StyleInput : MLFeatureProvider {
+    
+    /// image as color (kCVPixelFormatType_32BGRA) image buffer, 480 pixels wide by 640 pixels high
+    var image: CVPixelBuffer
+    
+    var featureNames: Set<String> {
+        get {
+            return ["image"]
+        }
+    }
+    
+    func featureValue(for featureName: String) -> MLFeatureValue? {
+        if (featureName == "image") {
+            return MLFeatureValue(pixelBuffer: image)
+        }
+        return nil
+    }
+    
+    init(image: CVPixelBuffer) {
+        self.image = image
+    }
+}
+
