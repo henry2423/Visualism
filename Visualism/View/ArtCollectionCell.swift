@@ -10,6 +10,12 @@ import UIKit
 
 class ArtCollectionCell: UICollectionViewCell {
     
+    var artStyle: ArtStyles! {
+        didSet {
+            self.imageView.image = UIImage(named: artStyle.rawValue)
+        }
+    }
+    
     @IBOutlet weak var imageView: UIImageView!
     
     // MARK: - Initialization

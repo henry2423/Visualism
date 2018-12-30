@@ -48,20 +48,21 @@ extension ArtCollectionViewController: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ArtCollection.allCases.count
+        return ArtStyles.allCases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArtCollectionReuseIdentifier, for: indexPath) as! ArtCollectionCell
     
-        cell.imageView.image = UIImage(named: ArtCollection.allCases[indexPath.item].rawValue)
+        cell.imageView.image = UIImage(named: ArtStyles.allCases[indexPath.item].rawValue)
     
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let artStyle = ArtCollection.allCases[indexPath.item]
-        let vc = VisualismViewController(withStyle: artStyle)
-        self.present(vc, animated: true, completion: nil)
+        let artStyle = ArtStyles.allCases[indexPath.item]
+//        let vc = VisualismViewController(withStyle: artStyle)
+//        self.present(vc, animated: true, completion: nil)
     }
 
 }

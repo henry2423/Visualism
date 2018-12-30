@@ -9,7 +9,7 @@
 import Foundation
 import CoreML
 
-enum ArtCollection: String, CaseIterable {
+public enum ArtStyles: String, CaseIterable {
     case Avigon = "Avignon.jpg"
     case Composition_b = "Composition_b.jpg"
     case Gray_tree = "Gray_tree.jpg"
@@ -27,7 +27,7 @@ enum ArtCollection: String, CaseIterable {
         case .Horse:
             return HorseStyle().model
         case .Lion:
-            return Lion_3().model
+            return LionStyle().model
         }
     }
 }

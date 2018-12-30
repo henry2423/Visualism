@@ -17,6 +17,9 @@ class VisualismViewController: UIViewController {
     var restartTimer: Timer?
     var countDownTimer: Timer?
     
+    // Bar CollectionView
+    var barCollectionView: BarCollectionView!
+    
     // Video capture parts
     var videoCapture : VideoCaptureView!
     var model: MLModel!
@@ -29,7 +32,7 @@ class VisualismViewController: UIViewController {
     private var stylePixelBuffer: CVPixelBuffer?
     
     // Close Button
-    var closeBarButton: UIButton!
+//    var closeBarButton: UIButton!
     var restartButton: UIButton!
     var shareButton: UIButton!
     
@@ -37,41 +40,44 @@ class VisualismViewController: UIViewController {
     var countDown: Int = 5
     var countDownLabelView: UILabel!
     
-    init(withStyle style: ArtCollection) {
-        model = style.getMLModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        model = AvignonStyle().model
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+//    init(withStyle style: ArtCollection) {
+//        model = style.getMLModel
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        model = AvignonStyle().model
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCamera()
         
+        // Load Default ML Model
+        self.model = AvignonStyle().model
+
         // Add Metal Preview View as a subview
         metalView = MetalImageView()
         metalView.imageContentMode = .ScaleAspectFill
         self.view.addSubview(metalView)
         
-        // Add Close Button
-        closeBarButton = UIButton()
-        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
-        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
-        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
-        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        closeBarButton.layer.cornerRadius = 45/2
-        closeBarButton.layer.masksToBounds = true
-        closeBarButton.isHidden = true
-        self.view.addSubview(closeBarButton)
+//        // Add Close Button
+//        closeBarButton = UIButton()
+//        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
+//        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
+//        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
+//        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+//        closeBarButton.layer.cornerRadius = 45/2
+//        closeBarButton.layer.masksToBounds = true
+//        closeBarButton.isHidden = true
+//        self.view.addSubview(closeBarButton)
         
         // Add ImageCapture Button
         imageCaptureButton = UIButton()
         imageCaptureButton.setImage(UIImage(named: "iconShutter"), for: .normal)
         imageCaptureButton.addTarget(self, action: #selector(imageCaptureButtonTapHandler(_:)), for: .touchUpInside)
-        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height*0.85, width: 85, height: 85)
+        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height - 200, width: 85, height: 85)
         imageCaptureButton.isHidden = true
         self.view.addSubview(imageCaptureButton)
         
@@ -80,7 +86,7 @@ class VisualismViewController: UIViewController {
         restartButton.setImage(UIImage(named: "Icon-Close"), for: .normal)
         restartButton.imageView?.contentMode = .scaleAspectFill
         restartButton.addTarget(self, action: #selector(restartButtonTapHandler(_:)), for: .touchUpInside)
-        restartButton.frame = CGRect(x: UIScreen.main.bounds.midX + 10, y: UIScreen.main.bounds.height*0.85, width: 70, height: 70)
+        restartButton.frame = CGRect(x: UIScreen.main.bounds.midX + 10, y: UIScreen.main.bounds.height - 200, width: 70, height: 70)
         restartButton.isHidden = true
         restartButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         restartButton.layer.cornerRadius = 70/2
@@ -93,7 +99,7 @@ class VisualismViewController: UIViewController {
         shareButton.setImage(UIImage(named: "Icon-Share"), for: .normal)
         shareButton.imageView?.contentMode = .scaleAspectFill
         shareButton.addTarget(self, action: #selector(shareButtonTapHandler(_:)), for: .touchUpInside)
-        shareButton.frame = CGRect(x: UIScreen.main.bounds.midX - 80, y: UIScreen.main.bounds.height*0.85, width: 70, height: 70)
+        shareButton.frame = CGRect(x: UIScreen.main.bounds.midX - 80, y: UIScreen.main.bounds.height - 200, width: 70, height: 70)
         shareButton.isHidden = true
         shareButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         shareButton.layer.cornerRadius = 70/2
@@ -115,6 +121,11 @@ class VisualismViewController: UIViewController {
         countDownLabelView.isHidden = true
         self.view.addSubview(countDownLabelView)
         
+        // Add BarCollectionViewController
+        barCollectionView = BarCollectionView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: UIScreen.main.bounds.width, height: 100))
+        barCollectionView.selectionDelegate = self
+        self.view.addSubview(barCollectionView)
+        
         // Activate Teardown Timer
         self.restartTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
     }
@@ -126,7 +137,7 @@ class VisualismViewController: UIViewController {
         videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.vga640x480) { success in
             if success {
                 // Once everything is set up, we can start capturing live video.
-                self.closeBarButton.isHidden = false
+//                self.closeBarButton.isHidden = false
                 self.imageCaptureButton.isHidden = false
                 self.videoCapture.start()
             }
@@ -159,9 +170,9 @@ class VisualismViewController: UIViewController {
         }
     }
     
-    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
-        self.dissmissView()
-    }
+//    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
+//        self.dissmissView()
+//    }
     
     @objc func restartButtonTapHandler(_ sender: UIBarButtonItem) {
         self.imageCaptureButton.isHidden = false
@@ -248,6 +259,15 @@ extension VisualismViewController: VideoCaptureDelegate {
         
         self.predictUsingVision(with: pixelBuffer)
     }
+}
+
+// MARK: BarCollectionViewDelegate
+extension VisualismViewController: BarCollectionViewDelegate {
+    
+    func didSelectStyle(_ style: ArtStyles) {
+        self.model = style.getMLModel
+    }
+    
 }
 
 /// Model Prediction Input Type
