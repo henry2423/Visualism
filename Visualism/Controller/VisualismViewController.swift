@@ -32,46 +32,48 @@ class VisualismViewController: UIViewController {
     private var stylePixelBuffer: CVPixelBuffer?
     
     // Close Button
-//    var closeBarButton: UIButton!
+    var closeBarButton: UIButton!
     var restartButton: UIButton!
     var shareButton: UIButton!
     
     // CountDown View
-    var countDown: Int = 5
+    var countDown: Int = 3
     var countDownLabelView: UILabel!
     
-//    init(withStyle style: ArtCollection) {
-//        model = style.getMLModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        model = AvignonStyle().model
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
+    convenience init() {
+        // Load Default ML Model
+        let artStyle = ArtStyles.Avigon
+        self.init(withStyle: artStyle)
+    }
+    
+    init(withStyle style: ArtStyles) {
+        self.model = style.getMLModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCamera()
-        
-        // Load Default ML Model
-        self.model = AvignonStyle().model
 
         // Add Metal Preview View as a subview
         metalView = MetalImageView()
         metalView.imageContentMode = .ScaleAspectFill
         self.view.addSubview(metalView)
         
-//        // Add Close Button
-//        closeBarButton = UIButton()
-//        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
-//        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
-//        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
-//        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-//        closeBarButton.layer.cornerRadius = 45/2
-//        closeBarButton.layer.masksToBounds = true
-//        closeBarButton.isHidden = true
-//        self.view.addSubview(closeBarButton)
+        // Add Close Button
+        closeBarButton = UIButton()
+        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
+        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
+        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
+        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        closeBarButton.layer.cornerRadius = 45/2
+        closeBarButton.layer.masksToBounds = true
+        closeBarButton.isHidden = true
+        self.view.addSubview(closeBarButton)
         
         // Add ImageCapture Button
         imageCaptureButton = UIButton()
@@ -137,7 +139,7 @@ class VisualismViewController: UIViewController {
         videoCapture.setUp(sessionPreset: AVCaptureSession.Preset.vga640x480) { success in
             if success {
                 // Once everything is set up, we can start capturing live video.
-//                self.closeBarButton.isHidden = false
+                self.closeBarButton.isHidden = false
                 self.imageCaptureButton.isHidden = false
                 self.videoCapture.start()
             }
@@ -159,7 +161,7 @@ class VisualismViewController: UIViewController {
             self.imageCaptureButton.isHidden = true
             self.shareButton.isHidden = false
             self.restartButton.isHidden = false
-            self.countDown = 5
+            self.countDown = 3
             self.countDownLabelView.text = "\(countDown)"
             self.countDownLabelView.isHidden = true
             self.shareButtonTapHandler(UIBarButtonItem())
@@ -170,9 +172,9 @@ class VisualismViewController: UIViewController {
         }
     }
     
-//    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
-//        self.dissmissView()
-//    }
+    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.dissmissView()
+    }
     
     @objc func restartButtonTapHandler(_ sender: UIBarButtonItem) {
         self.imageCaptureButton.isHidden = false

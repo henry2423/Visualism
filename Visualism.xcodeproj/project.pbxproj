@@ -20,6 +20,7 @@
 		BA0381CD21D4033D00019652 /* Composition_b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381CC21D4033D00019652 /* Composition_b.jpg */; };
 		BA0381CF21D403BF00019652 /* ArtCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */; };
 		BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */; };
+		BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA313B7421D9F71E00AE7929 /* MainViewController.swift */; };
 		BA7C7F9A21D9202700776DF2 /* BarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */; };
 		BA95E7A321C4F0950013E460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7A221C4F0950013E460 /* AppDelegate.swift */; };
 		BA95E7A821C4F0950013E460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA95E7A621C4F0950013E460 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		BA0381CC21D4033D00019652 /* Composition_b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Composition_b.jpg; sourceTree = "<group>"; };
 		BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtCollectionModel.swift; path = Visualism/Model/ArtCollectionModel.swift; sourceTree = SOURCE_ROOT; };
 		BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LionStyle.mlmodel; sourceTree = "<group>"; };
+		BA313B7421D9F71E00AE7929 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCollectionView.swift; sourceTree = "<group>"; };
 		BA95E79F21C4F0950013E460 /* Visualism.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visualism.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA95E7A221C4F0950013E460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
 				BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */,
+				BA313B7421D9F71E00AE7929 /* MainViewController.swift */,
 				BA95E7A621C4F0950013E460 /* Main.storyboard */,
 			);
 			path = Controller;
@@ -251,6 +254,7 @@
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
 				BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */,
 				BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */,
+				BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */,
 				BA95E7B721C4F0C70013E460 /* StarryNightStyle.mlmodel in Sources */,
 				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,
 				BA0381B421D3BBDA00019652 /* ArtCollectionViewController.swift in Sources */,
