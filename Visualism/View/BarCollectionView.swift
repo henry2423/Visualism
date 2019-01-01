@@ -9,7 +9,7 @@
 import UIKit
 
 private let ArtCollectionReuseIdentifier = "ArtCollectionCell"
-private let BarItemSize: CGFloat = 80
+private let BarItemSize: CGFloat = 120
 private let BarItemLineSpacing: CGFloat = 10
 private let collectionViewHeightOffset: CGFloat = 20
 
@@ -20,7 +20,6 @@ public protocol BarCollectionViewDelegate: class {
 class BarCollectionView: UICollectionView {
 
     //var feedbackGenerator: UISelectionFeedbackGenerator?
-    
     public weak var selectionDelegate: BarCollectionViewDelegate?
     
     // MARK: - Initialization
@@ -62,7 +61,7 @@ class BarCollectionView: UICollectionView {
         // Find collectionview cell nearest to the center of collectionView
         // Arbitrarily start with the last cell (as a default)
         var closestCell: UICollectionViewCell = self.visibleCells[0];
-        for cell in self.visibleCells as [UICollectionViewCell] {
+        self.visibleCells.forEach { (cell) in
             let closestCellDelta = abs(closestCell.center.x - self.bounds.size.width/2.0 - self.contentOffset.x)
             let cellDelta = abs(cell.center.x - self.bounds.size.width/2.0 - self.contentOffset.x)
             if (cellDelta < closestCellDelta){
@@ -120,19 +119,32 @@ class SelectingFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let array = super.layoutAttributesForElements(in: rect)
-        // 可见矩阵
         let visiableRect = CGRect(x: self.collectionView!.contentOffset.x, y: self.collectionView!.contentOffset.y, width: self.collectionView!.frame.width, height: self.collectionView!.frame.height)
-
-        for attributes in array! {
-            // 不在可见区域的attributes不变化
-            if !visiableRect.intersects(attributes.frame) {continue}
-            let frame = attributes.frame
-            let distance = abs(collectionView!.contentOffset.x + collectionView!.contentInset.left - frame.origin.x)
-            let scale = min(max(1 - distance/(collectionView!.bounds.width), 0.75), 1)
-            attributes.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
+        guard let attributes = super.layoutAttributesForElements(in: visiableRect) else {
+            return nil
         }
-        return array
+        
+        guard let attributesCopy = attributes.map({ $0.copy() }) as? [UICollectionViewLayoutAttributes] else {
+            return nil
+        }
+        guard var closestCell = attributesCopy.first else {
+            return nil
+        }
+        //let centerOffset = collectionView!.bounds.width/2.0 + collectionView!.contentOffset.x
+        attributesCopy.forEach { (attribute) in
+            let closestCellDelta = abs(closestCell.center.x - collectionView!.bounds.width/2.0 - collectionView!.contentOffset.x)
+            let cellDelta = abs(attribute.center.x - collectionView!.bounds.width/2.0 - collectionView!.contentOffset.x)
+            if (cellDelta < closestCellDelta){
+                closestCell = attribute
+            }
+//            if abs(attribute.center.x - centerOffset) <= (itemSize.width * 0.5 + 10.0) {
+//                attribute.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//            }
+        }
+        closestCell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        
+        return attributesCopy
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {

@@ -39,7 +39,7 @@ class VisualismViewController: UIViewController {
     // CountDown View
     var countDown: Int = 3
     var countDownLabelView: UILabel!
-    
+
     convenience init() {
         // Load Default ML Model
         let artStyle = ArtStyles.Avigon
@@ -66,7 +66,8 @@ class VisualismViewController: UIViewController {
         
         // Add Close Button
         closeBarButton = UIButton()
-        closeBarButton.setImage(UIImage(named: "Icon-Back"), for: .normal)
+        closeBarButton.setImage(UIImage(named: "Icon-Aarrow-Down")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        closeBarButton.tintColor = UIColor.white
         closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
         closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height + 25, width: 45, height: 45)
         closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -79,7 +80,14 @@ class VisualismViewController: UIViewController {
         imageCaptureButton = UIButton()
         imageCaptureButton.setImage(UIImage(named: "iconShutter"), for: .normal)
         imageCaptureButton.addTarget(self, action: #selector(imageCaptureButtonTapHandler(_:)), for: .touchUpInside)
-        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height - 200, width: 85, height: 85)
+        imageCaptureButton.frame = CGRect(x: UIScreen.main.bounds.midX - 37, y: UIScreen.main.bounds.height - 360, width: 85, height: 300)
+        imageCaptureButton.setTitle("倒數拍照", for: .normal)
+        imageCaptureButton.setTitleColor(UIColor.white, for: .normal)
+        imageCaptureButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        let titleSize = imageCaptureButton.titleLabel!.bounds.size
+        let imageSize = imageCaptureButton.imageView!.bounds.size
+        imageCaptureButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: titleSize.height, right: -(titleSize.width))
+        imageCaptureButton.titleEdgeInsets = UIEdgeInsets(top: imageSize.height + 18.0, left: -(imageSize.width + 10.0), bottom: 0.0, right: 0.0)
         imageCaptureButton.isHidden = true
         self.view.addSubview(imageCaptureButton)
         
@@ -88,7 +96,7 @@ class VisualismViewController: UIViewController {
         restartButton.setImage(UIImage(named: "Icon-Close"), for: .normal)
         restartButton.imageView?.contentMode = .scaleAspectFill
         restartButton.addTarget(self, action: #selector(restartButtonTapHandler(_:)), for: .touchUpInside)
-        restartButton.frame = CGRect(x: UIScreen.main.bounds.midX + 10, y: UIScreen.main.bounds.height - 200, width: 70, height: 70)
+        restartButton.frame = CGRect(x: UIScreen.main.bounds.midX + 10, y: UIScreen.main.bounds.height - 250, width: 70, height: 70)
         restartButton.isHidden = true
         restartButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         restartButton.layer.cornerRadius = 70/2
@@ -101,7 +109,7 @@ class VisualismViewController: UIViewController {
         shareButton.setImage(UIImage(named: "Icon-Share"), for: .normal)
         shareButton.imageView?.contentMode = .scaleAspectFill
         shareButton.addTarget(self, action: #selector(shareButtonTapHandler(_:)), for: .touchUpInside)
-        shareButton.frame = CGRect(x: UIScreen.main.bounds.midX - 80, y: UIScreen.main.bounds.height - 200, width: 70, height: 70)
+        shareButton.frame = CGRect(x: UIScreen.main.bounds.midX - 80, y: UIScreen.main.bounds.height - 250, width: 70, height: 70)
         shareButton.isHidden = true
         shareButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         shareButton.layer.cornerRadius = 70/2
@@ -124,7 +132,7 @@ class VisualismViewController: UIViewController {
         self.view.addSubview(countDownLabelView)
         
         // Add BarCollectionViewController
-        barCollectionView = BarCollectionView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: UIScreen.main.bounds.width, height: 100))
+        barCollectionView = BarCollectionView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 150, width: UIScreen.main.bounds.width, height: 150))
         barCollectionView.selectionDelegate = self
         self.view.addSubview(barCollectionView)
         
@@ -148,7 +156,7 @@ class VisualismViewController: UIViewController {
     
     // MARK: - ButtonTapHandler
     @objc func imageCaptureButtonTapHandler(_ sender: UIBarButtonItem) {
-        countDownLabelView.isHidden = false
+        self.countDownLabelView.isHidden = false
         self.countDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(captureImage(_:)), userInfo: nil, repeats: true)
         self.imageCaptureButton.isUserInteractionEnabled = false
         self.imageCaptureButton.alpha = 0.7
@@ -156,7 +164,7 @@ class VisualismViewController: UIViewController {
     }
     
     @objc func captureImage(_ time: Timer) {
-        if countDown == 0 {
+        if countDown == 1 {
             self.videoCapture!.stop()
             self.imageCaptureButton.isHidden = true
             self.shareButton.isHidden = false
