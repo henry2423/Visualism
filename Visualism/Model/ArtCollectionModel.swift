@@ -11,23 +11,26 @@ import CoreML
 
 public enum ArtStyles: String, CaseIterable {
     case Avigon = "Avignon.jpg"
-    case Composition_b = "Composition_b.jpg"
-    case Gray_tree = "Gray_tree.jpg"
+    case Woman = "Woman.jpg"
     case Horse = "Horse.jpg"
+    case OldMan = "Old_man.jpg"
     case Lion = "Lion.jpg"
-    
+    case Gray_tree = "Gray_tree.jpg"
+
     var getMLModel: MLModel {
         switch self {
         case .Avigon:
             return AvignonStyle().model
-        case .Composition_b:
-            return StarryNightStyle().model
         case .Gray_tree:
             return GrayTreeStyle().model
         case .Horse:
             return HorseStyle().model
         case .Lion:
             return LionStyle().model
+        case .OldMan:
+            return OldManStyle().model
+        case .Woman:
+            return WomanStyle().model
         }
     }
 }

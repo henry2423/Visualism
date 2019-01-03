@@ -137,7 +137,7 @@ class VisualismViewController: UIViewController {
         self.view.addSubview(barCollectionView)
         
         // Activate Teardown Timer
-        self.restartTimer = Timer.scheduledTimer(timeInterval: 180, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
+        self.restartTimer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
     }
     
     // MARK: - Initialization
@@ -156,6 +156,7 @@ class VisualismViewController: UIViewController {
     
     // MARK: - ButtonTapHandler
     @objc func imageCaptureButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.restartTimer?.invalidate()
         self.countDownLabelView.isHidden = false
         self.countDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(captureImage(_:)), userInfo: nil, repeats: true)
         self.imageCaptureButton.isUserInteractionEnabled = false
@@ -164,7 +165,7 @@ class VisualismViewController: UIViewController {
     }
     
     @objc func captureImage(_ time: Timer) {
-        if countDown == 1 {
+        if countDown == 0 {
             self.videoCapture!.stop()
             self.imageCaptureButton.isHidden = true
             self.shareButton.isHidden = false
@@ -185,6 +186,8 @@ class VisualismViewController: UIViewController {
     }
     
     @objc func restartButtonTapHandler(_ sender: UIBarButtonItem) {
+        // Restart Time Scheduler
+        self.restartTimer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(viewTearDown(_:)), userInfo: nil, repeats: false)
         self.imageCaptureButton.isHidden = false
         self.imageCaptureButton.isUserInteractionEnabled = true
         self.imageCaptureButton.alpha = 1.0
@@ -207,17 +210,10 @@ class VisualismViewController: UIViewController {
         activityViewController.popoverPresentationController?.sourceRect = self.shareButton.bounds
         
         // exclude some activity types from the list (optional)
-        //activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        activityViewController.excludedActivityTypes = [ .assignToContact, .mail, .message, .addToReadingList, .openInIBooks, .postToFacebook, .postToTwitter, .print ]
         
-//        // present the view controller
+        // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
-//        activityViewController.completionWithItemsHandler = { (activity: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-//            self.imageCaptureButton.isUserInteractionEnabled = true
-//            self.imageCaptureButton.alpha = 1.0
-//            self.videoCapture!.start()
-//            self.shareButton.isHidden = true
-//            self.restartButton.isHidden = true
-//        }
         
     }
     
