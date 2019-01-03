@@ -50,8 +50,7 @@ class MetalImageView: MTKView {
         super.init(frame: frameRect, device: device)
 
         self.framebufferOnly = false
-        //self.enableSetNeedsDisplay = false
-        //self.isPaused = true
+        self.isPaused = true
     }
     
     required init(coder aDecoder: NSCoder) {

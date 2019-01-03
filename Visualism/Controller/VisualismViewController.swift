@@ -276,7 +276,7 @@ extension VisualismViewController: BarCollectionViewDelegate {
     
 }
 
-/// Model Prediction Input Type
+//MARK: - Model Prediction Input Type
 @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
 class StyleInput : MLFeatureProvider {
     

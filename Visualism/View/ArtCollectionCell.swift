@@ -21,7 +21,6 @@ class ArtCollectionCell: UICollectionViewCell {
     // MARK: - Initialization
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         self.imageView.layer.cornerRadius = 4.0
         self.imageView.layer.masksToBounds = true
         self.imageView.contentMode = .scaleAspectFill

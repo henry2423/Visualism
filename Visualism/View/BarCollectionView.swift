@@ -48,15 +48,7 @@ class BarCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - UIScrollView
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let barContentOffset = self.bounds.width * 0.5 - BarItemSize * 0.5
-//        let rollingCount = Int((scrollView.contentOffset.x + barContentOffset) / (BarItemSize + BarItemLineSpacing))
-//        if rollingCount > 0 {
-//            self.feedbackGenerator?.selectionChanged()
-//        }
-    }
-    
+    // MARK: - UIScrollView    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // Find collectionview cell nearest to the center of collectionView
         // Arbitrarily start with the last cell (as a default)
@@ -111,7 +103,7 @@ extension BarCollectionView: UICollectionViewDelegateFlowLayout {
     
 }
 
-
+//MARK: - UICollectionViewFlowLayout
 class SelectingFlowLayout: UICollectionViewFlowLayout {
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
