@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		803D88E8915C118AC736EF06 /* Pods_Visualism.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D40F29EA9DBC080B97A677 /* Pods_Visualism.framework */; };
 		BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */; };
-		BA0381B421D3BBDA00019652 /* ArtCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */; };
 		BA0381BC21D3BD4C00019652 /* Lion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B621D3BD4C00019652 /* Lion.jpg */; };
 		BA0381BD21D3BD4C00019652 /* Horse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B721D3BD4C00019652 /* Horse.jpg */; };
 		BA0381BF21D3BD4C00019652 /* Old_man.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA0381B921D3BD4C00019652 /* Old_man.jpg */; };
@@ -25,6 +24,8 @@
 		BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA313B7421D9F71E00AE7929 /* MainViewController.swift */; };
 		BA77778721DB7C530051A950 /* hand_swipe_up_gesture.json in Resources */ = {isa = PBXBuildFile; fileRef = BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */; };
 		BA77778921DB81970051A950 /* kagami_mirror_lens_flare.json in Resources */ = {isa = PBXBuildFile; fileRef = BA77778821DB81970051A950 /* kagami_mirror_lens_flare.json */; };
+		BA78C35B21DE201A00BA2732 /* MorningStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */; };
+		BA78C35D21DE202C00BA2732 /* Morning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA78C35C21DE202C00BA2732 /* Morning.jpg */; };
 		BA7C7F9A21D9202700776DF2 /* BarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */; };
 		BA89432221DBD3E700A521C9 /* OldManStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA89432121DBD3E700A521C9 /* OldManStyle.mlmodel */; };
 		BA90F04721DD2BA600C66049 /* Woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA90F04621DD2BA600C66049 /* Woman.jpg */; };
@@ -41,7 +42,6 @@
 /* Begin PBXFileReference section */
 		4EFBD9FDD615A708FAE58428 /* Pods-Visualism.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visualism.release.xcconfig"; path = "Pods/Target Support Files/Pods-Visualism/Pods-Visualism.release.xcconfig"; sourceTree = "<group>"; };
 		BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AvignonStyle.mlmodel; sourceTree = "<group>"; };
-		BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionViewController.swift; sourceTree = "<group>"; };
 		BA0381B621D3BD4C00019652 /* Lion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lion.jpg; sourceTree = "<group>"; };
 		BA0381B721D3BD4C00019652 /* Horse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Horse.jpg; sourceTree = "<group>"; };
 		BA0381B921D3BD4C00019652 /* Old_man.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Old_man.jpg; sourceTree = "<group>"; };
@@ -57,6 +57,8 @@
 		BA313B7421D9F71E00AE7929 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hand_swipe_up_gesture.json; sourceTree = "<group>"; };
 		BA77778821DB81970051A950 /* kagami_mirror_lens_flare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = kagami_mirror_lens_flare.json; sourceTree = "<group>"; };
+		BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MorningStyle.mlmodel; sourceTree = "<group>"; };
+		BA78C35C21DE202C00BA2732 /* Morning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Morning.jpg; sourceTree = "<group>"; };
 		BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCollectionView.swift; sourceTree = "<group>"; };
 		BA89432121DBD3E700A521C9 /* OldManStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OldManStyle.mlmodel; sourceTree = "<group>"; };
 		BA90F04621DD2BA600C66049 /* Woman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Woman.jpg; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				BA0381B721D3BD4C00019652 /* Horse.jpg */,
 				BA0381B621D3BD4C00019652 /* Lion.jpg */,
 				BA0381B921D3BD4C00019652 /* Old_man.jpg */,
+				BA78C35C21DE202C00BA2732 /* Morning.jpg */,
 			);
 			path = "Art Collection";
 			sourceTree = "<group>";
@@ -193,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
-				BA0381B321D3BBDA00019652 /* ArtCollectionViewController.swift */,
 				BA313B7421D9F71E00AE7929 /* MainViewController.swift */,
 				BA95E7A621C4F0950013E460 /* Main.storyboard */,
 			);
@@ -209,6 +211,7 @@
 				BAAE778121D49316004E0245 /* HorseStyle.mlmodel */,
 				BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */,
 				BA0BDBC921DDD98D0087A47B /* WomanStyle.mlmodel */,
+				BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */,
 			);
 			path = "CoreML Model";
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA78C35D21DE202C00BA2732 /* Morning.jpg in Resources */,
 				BA95E7AD21C4F0960013E460 /* LaunchScreen.storyboard in Resources */,
 				BA0381BD21D3BD4C00019652 /* Horse.jpg in Resources */,
 				BA90F04721DD2BA600C66049 /* Woman.jpg in Resources */,
@@ -350,11 +354,11 @@
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
 				BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */,
 				BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */,
+				BA78C35B21DE201A00BA2732 /* MorningStyle.mlmodel in Sources */,
 				BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */,
 				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,
 				BA0BDBCA21DDD98D0087A47B /* WomanStyle.mlmodel in Sources */,
 				BA89432221DBD3E700A521C9 /* OldManStyle.mlmodel in Sources */,
-				BA0381B421D3BBDA00019652 /* ArtCollectionViewController.swift in Sources */,
 				BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */,
 				BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */,
 				BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */,

@@ -15,6 +15,7 @@ public enum ArtStyles: String, CaseIterable {
     case Horse = "Horse.jpg"
     case OldMan = "Old_man.jpg"
     case Lion = "Lion.jpg"
+    case Morning = "Morning.jpg"
     case Gray_tree = "Gray_tree.jpg"
 
     var getMLModel: MLModel {
@@ -31,6 +32,8 @@ public enum ArtStyles: String, CaseIterable {
             return OldManStyle().model
         case .Woman:
             return WomanStyle().model
+        case .Morning:
+            return MorningStyle().model
         }
     }
 }
