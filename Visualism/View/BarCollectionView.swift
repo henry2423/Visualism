@@ -150,10 +150,10 @@ class SelectingFlowLayout: UICollectionViewFlowLayout {
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         let lastRect = CGRect(x: proposedContentOffset.x, y: proposedContentOffset.y, width: self.collectionView!.frame.width, height: self.collectionView!.frame.height)
 
-        let centerX = proposedContentOffset.x + self.collectionView!.frame.width * 0.5;
-        //这个范围内所有的属性
+        let centerX = proposedContentOffset.x + collectionView!.frame.width * 0.5;
+        // Get layout from this rect
         let array = self.layoutAttributesForElements(in: lastRect)
-        //需要移动的距离
+        // Calculate the adjust offset
         var adjustOffsetX = CGFloat(MAXFLOAT);
         for attri in array! {
             if abs(attri.center.x - centerX) < abs(adjustOffsetX) {

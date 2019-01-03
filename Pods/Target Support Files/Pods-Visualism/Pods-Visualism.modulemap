@@ -1,0 +1,6 @@
+framework module Pods_Visualism {
+  umbrella header "Pods-Visualism-umbrella.h"
+
+  export *
+  module * { export * }
+}
