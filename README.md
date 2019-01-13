@@ -3,7 +3,7 @@
 ## Conception:
 This is a Real Time Style Transfer App using CoreML. we cooperated with Taiwan National Palace Museum, build a learning model which stylize user's picture in real time using deep learning technique.
 
-[![Visualism Concept Intro](https://img.youtube.com/vi/ZJ5-6gZsC0k/0.jpg)](https://www.youtube.com/watch?v=ZJ5-6gZsC0k "Visualism Concept Intro")
+[![Visualism Concept Intro](docs/video-screenshot-1.png)](https://www.youtube.com/watch?v=ZJ5-6gZsC0k "Visualism Concept Intro")
 
 ## Stylize Samples:
 ![Stylize-samples](docs/stylize-samples.jpg)
@@ -11,7 +11,7 @@ This is a Real Time Style Transfer App using CoreML. we cooperated with Taiwan N
 ## Demo Video:
 * User can stand in front of camera and stylize image will show up on the big screen.
 
-[![Visualism Real Scenario](https://img.youtube.com/vi/fM-dD9SbTUQ/0.jpg)](https://www.youtube.com/watch?v=fM-dD9SbTUQ "Visualism Concept Intro")
+[![Visualism Real Scenario](docs/video-screenshot-2.png)](https://www.youtube.com/watch?v=fM-dD9SbTUQ "Visualism Concept Intro")
 
 * Function Demo
 
