@@ -15,11 +15,11 @@ This is a Real Time Style Transfer App using CoreML. we cooperated with Taiwan N
 
 * Function Demo
 
-![Stylize-Demo](docs/demo.gif)
+![Stylize-Demo](docs/Demo.gif)
 
 ## Poster
 
-![Poster](docs/manual.jpg)
+![Poster](docs/Manual.jpg)
 
 ## Reference
 * [Perceptual Losses for Real-Time Style Transfer
