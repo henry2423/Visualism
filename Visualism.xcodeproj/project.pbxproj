@@ -37,7 +37,18 @@
 		BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E421C4FB600013E460 /* MetalImageView.swift */; };
 		BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BAAE778121D49316004E0245 /* HorseStyle.mlmodel */; };
 		BAAFAEE121DD413C00F8BA7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */; };
+		BABF5D132204B3C9003D222C /* VisualismTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABF5D122204B3C9003D222C /* VisualismTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BABF5D152204B3C9003D222C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA95E79721C4F0950013E460 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA95E79E21C4F0950013E460;
+			remoteInfo = Visualism;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4EFBD9FDD615A708FAE58428 /* Pods-Visualism.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visualism.release.xcconfig"; path = "Pods/Target Support Files/Pods-Visualism/Pods-Visualism.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +83,9 @@
 		BA95E7E421C4FB600013E460 /* MetalImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalImageView.swift; sourceTree = "<group>"; };
 		BAAE778121D49316004E0245 /* HorseStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HorseStyle.mlmodel; sourceTree = "<group>"; };
 		BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BABF5D102204B3C9003D222C /* VisualismTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualismTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BABF5D122204B3C9003D222C /* VisualismTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualismTests.swift; sourceTree = "<group>"; };
+		BABF5D142204B3C9003D222C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1D40F29EA9DBC080B97A677 /* Pods_Visualism.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Visualism.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF3C5DB1F898C8062B1C048 /* Pods-Visualism.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visualism.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Visualism/Pods-Visualism.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +96,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				803D88E8915C118AC736EF06 /* Pods_Visualism.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BABF5D0D2204B3C9003D222C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				BA95E7A121C4F0950013E460 /* Visualism */,
+				BABF5D112204B3C9003D222C /* VisualismTests */,
 				BA95E7A021C4F0950013E460 /* Products */,
 				40DDE7661D8884C30C414FE7 /* Pods */,
 				6D52EE470050823682135319 /* Frameworks */,
@@ -154,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				BA95E79F21C4F0950013E460 /* Visualism.app */,
+				BABF5D102204B3C9003D222C /* VisualismTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,6 +239,15 @@
 			path = "CoreML Model";
 			sourceTree = "<group>";
 		};
+		BABF5D112204B3C9003D222C /* VisualismTests */ = {
+			isa = PBXGroup;
+			children = (
+				BABF5D122204B3C9003D222C /* VisualismTests.swift */,
+				BABF5D142204B3C9003D222C /* Info.plist */,
+			);
+			path = VisualismTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +270,24 @@
 			productReference = BA95E79F21C4F0950013E460 /* Visualism.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BABF5D0F2204B3C9003D222C /* VisualismTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BABF5D192204B3C9003D222C /* Build configuration list for PBXNativeTarget "VisualismTests" */;
+			buildPhases = (
+				BABF5D0C2204B3C9003D222C /* Sources */,
+				BABF5D0D2204B3C9003D222C /* Frameworks */,
+				BABF5D0E2204B3C9003D222C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BABF5D162204B3C9003D222C /* PBXTargetDependency */,
+			);
+			name = VisualismTests;
+			productName = VisualismTests;
+			productReference = BABF5D102204B3C9003D222C /* VisualismTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +300,10 @@
 				TargetAttributes = {
 					BA95E79E21C4F0950013E460 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					BABF5D0F2204B3C9003D222C = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = BA95E79E21C4F0950013E460;
 					};
 				};
 			};
@@ -267,6 +321,7 @@
 			projectRoot = "";
 			targets = (
 				BA95E79E21C4F0950013E460 /* Visualism */,
+				BABF5D0F2204B3C9003D222C /* VisualismTests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,6 +345,13 @@
 				BA0381BC21D3BD4C00019652 /* Lion.jpg in Resources */,
 				BA77778721DB7C530051A950 /* hand_swipe_up_gesture.json in Resources */,
 				BA0381CD21D4033D00019652 /* Composition_b.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BABF5D0E2204B3C9003D222C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +427,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BABF5D0C2204B3C9003D222C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BABF5D132204B3C9003D222C /* VisualismTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BABF5D162204B3C9003D222C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA95E79E21C4F0950013E460 /* Visualism */;
+			targetProxy = BABF5D152204B3C9003D222C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BA95E7A621C4F0950013E460 /* Main.storyboard */ = {
@@ -545,6 +623,46 @@
 			};
 			name = Release;
 		};
+		BABF5D172204B3C9003D222C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AZDTL9RMV6;
+				INFOPLIST_FILE = VisualismTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.VisualismTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Visualism.app/Visualism";
+			};
+			name = Debug;
+		};
+		BABF5D182204B3C9003D222C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AZDTL9RMV6;
+				INFOPLIST_FILE = VisualismTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = henrystime.com.VisualismTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Visualism.app/Visualism";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -562,6 +680,15 @@
 			buildConfigurations = (
 				BA95E7B221C4F0960013E460 /* Debug */,
 				BA95E7B321C4F0960013E460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BABF5D192204B3C9003D222C /* Build configuration list for PBXNativeTarget "VisualismTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BABF5D172204B3C9003D222C /* Debug */,
+				BABF5D182204B3C9003D222C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
