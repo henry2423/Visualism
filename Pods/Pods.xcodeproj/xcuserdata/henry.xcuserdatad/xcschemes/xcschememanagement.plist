@@ -4,22 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Visualism.xcscheme</key>
+		<key>Pods-Visualism.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>lottie-ios.xcscheme</key>
+		<key>lottie-ios.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>DFE1B7F786163ED6A32B83246092616B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6B90F97DD7A90C5BD066AB6ECE171BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
