@@ -1,6 +1,5 @@
 language: objective-c
 osx_image: xcode10.1
 xcode_workspace: Visualism.xcworkspace
-xcode_scheme: Visualism
 xcode_destination: platform=iOS Simulator,OS=10.1,name=iPhone X
 podfile: Podfile
