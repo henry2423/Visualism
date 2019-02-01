@@ -1,7 +1,7 @@
 # Visualism - Color Your Life
 
 ## Conception:
-This is a Real Time Style Transfer App using CoreML. we cooperated with Taiwan National Palace Museum, build a learning model which stylize user's picture in real time using deep learning technique.
+This is a Real Time Style Transfer App using CoreML. we collaborated with Taiwan National Palace Museum, build a learning model which stylize user's picture in real time using deep learning technique.
 
 [![Visualism Concept Intro](docs/video-screenshot-1.png)](https://www.youtube.com/watch?v=ZJ5-6gZsC0k "Visualism Concept Intro")
 
