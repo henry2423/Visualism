@@ -55,10 +55,11 @@ class ArtCollectionViewController: UIViewController {
         self.collectionView.frame = view.bounds
     }
     
+    // MARK: Temp Video Converter URL
     func filePath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0] as String
-        let filePath : String = "\(documentsDirectory)/video.mp4"
+        let filePath : String = "\(documentsDirectory)/styleVideo.mp4"
         return filePath
     }
     
@@ -88,63 +89,9 @@ extension ArtCollectionViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.model = ArtStyles.allCases[indexPath.item].getMLModel
-        let asset = AVAsset(url: videoURL)
-        guard let videoReader = VideoReader(videoAsset: asset), let sampleFrame = videoReader.nextFrame() else {
-            fatalError()
-        }
-        
-        do {
-            if FileManager.default.fileExists(atPath: self.filePath()) {
-                try FileManager.default.removeItem(atPath: self.filePath())
-                print("file removed")
-            }
-        } catch {
-            print(error)
-        }
-
-        let buffer = CMSampleBufferGetImageBuffer(sampleFrame)
-        let video = VideoWriter()
-        video.start(withSize: CVImageBufferGetCleanRect(buffer!), at: self.filePathUrl())
-
-        guard videoReader.restartReading() else {
-            return
-        }
-        var frames = 0
-        while true {
-            guard let frame = videoReader.nextFrame() else {
-                break
-            }
-            frames += 1
-            print(frames)
-            // Transfer Style
-            let buffer = CMSampleBufferGetImageBuffer(frame)
-            let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(frame)
-            let stylePixelBuffer = self.predictUsingVision(with: buffer! as CVPixelBuffer)
-            video.append(stylePixelBuffer!, currentSampleTime: sampleTime)
-        }
-
-        video.stop(at: self.filePathUrl())
-        let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        self.converterVideo()
     }
 
-}
-
-extension CMFormatDescription {
-    static func make(from pixelBuffer: CVPixelBuffer) -> CMFormatDescription? {
-        var formatDescription: CMFormatDescription?
-        CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, formatDescriptionOut: &formatDescription)
-        return formatDescription
-    }
-}
-
-extension CMSampleBuffer {
-    static func make(from pixelBuffer: CVPixelBuffer, formatDescription: CMFormatDescription, timingInfo: inout CMSampleTimingInfo) -> CMSampleBuffer? {
-        var sampleBuffer: CMSampleBuffer?
-        CMSampleBufferCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: pixelBuffer, dataReady: true, makeDataReadyCallback: nil, refcon: nil, formatDescription: formatDescription, sampleTiming: &timingInfo, sampleBufferOut: &sampleBuffer)
-        return sampleBuffer
-    }
 }
 
 // MARK: Model Inference
@@ -162,6 +109,56 @@ extension ArtCollectionViewController {
         
         return nil
     }
+    
+    func converterVideo() {
+        let asset = AVAsset(url: videoURL)
+        guard let videoReader = VideoReader(videoAsset: asset) else {
+            fatalError()
+        }
+        
+        do {
+            if FileManager.default.fileExists(atPath: self.filePath()) {
+                try FileManager.default.removeItem(atPath: self.filePath())
+                print("file removed")
+            }
+        } catch {
+            print(error)
+        }
+        
+        let videoWriter = VideoWriter()
+        
+        var frames = 0
+        while true {
+            guard let frame = videoReader.nextFrame() else {
+                break
+            }
+            
+            let buffer = CMSampleBufferGetImageBuffer(frame)
+            if frames == 0 {
+                // Setup videoWrite for the first time
+                videoWriter.start(withSize: CVImageBufferGetCleanRect(buffer!), at: self.filePathUrl())
+            }
+            // Transfer Style
+            let stylePixelBuffer = self.predictUsingVision(with: buffer! as CVPixelBuffer)
+            // Appned Style Image to videoWriter
+            let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(frame)
+            videoWriter.append(stylePixelBuffer!, currentSampleTime: sampleTime)
+            
+            frames += 1
+            print(frames)
+        }
+        
+        videoWriter.stop(at: self.filePathUrl(), audioURL: self.videoURL)
+        let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+}
+
+
+// MARK: Audio Mixing
+extension ArtCollectionViewController {
     
     
 }

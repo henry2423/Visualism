@@ -75,9 +75,9 @@ class AttachmentHandler: NSObject{
             
         }))
         
-        actionSheet.addAction(UIAlertAction(title: Constants.file, style: .default, handler: { (action) -> Void in
-            self.documentPicker()
-        }))
+//        actionSheet.addAction(UIAlertAction(title: Constants.file, style: .default, handler: { (action) -> Void in
+//            self.documentPicker()
+//        }))
         
         actionSheet.addAction(UIAlertAction(title: Constants.cancelBtnTitle, style: .cancel, handler: nil))
         
