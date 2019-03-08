@@ -21,7 +21,10 @@
 		BA0381CF21D403BF00019652 /* ArtCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */; };
 		BA0BDBCA21DDD98D0087A47B /* WomanStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA0BDBC921DDD98D0087A47B /* WomanStyle.mlmodel */; };
 		BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */; };
+		BA1DC868222C6FCB001F904D /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */; };
 		BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA313B7421D9F71E00AE7929 /* MainViewController.swift */; };
+		BA6568E72231D0D800FBA6E7 /* ArtCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */; };
+		BA6568EB2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA6568EA2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel */; };
 		BA77778721DB7C530051A950 /* hand_swipe_up_gesture.json in Resources */ = {isa = PBXBuildFile; fileRef = BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */; };
 		BA77778921DB81970051A950 /* kagami_mirror_lens_flare.json in Resources */ = {isa = PBXBuildFile; fileRef = BA77778821DB81970051A950 /* kagami_mirror_lens_flare.json */; };
 		BA78C35B21DE201A00BA2732 /* MorningStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */; };
@@ -37,6 +40,8 @@
 		BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E421C4FB600013E460 /* MetalImageView.swift */; };
 		BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BAAE778121D49316004E0245 /* HorseStyle.mlmodel */; };
 		BAAFAEE121DD413C00F8BA7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */; };
+		BAB70A42222F8DAE009A7F03 /* VideoReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A41222F8DAE009A7F03 /* VideoReader.swift */; };
+		BAB70A44222F8F91009A7F03 /* VideoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A43222F8F91009A7F03 /* VideoWriter.swift */; };
 		BABF5D132204B3C9003D222C /* VisualismTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABF5D122204B3C9003D222C /* VisualismTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +70,10 @@
 		BA0381CE21D403BF00019652 /* ArtCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtCollectionModel.swift; path = Visualism/Model/ArtCollectionModel.swift; sourceTree = SOURCE_ROOT; };
 		BA0BDBC921DDD98D0087A47B /* WomanStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WomanStyle.mlmodel; sourceTree = "<group>"; };
 		BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LionStyle.mlmodel; sourceTree = "<group>"; };
+		BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
 		BA313B7421D9F71E00AE7929 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionViewController.swift; sourceTree = "<group>"; };
+		BA6568EA2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_small_a03_q8.mlmodel; sourceTree = "<group>"; };
 		BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hand_swipe_up_gesture.json; sourceTree = "<group>"; };
 		BA77778821DB81970051A950 /* kagami_mirror_lens_flare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = kagami_mirror_lens_flare.json; sourceTree = "<group>"; };
 		BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MorningStyle.mlmodel; sourceTree = "<group>"; };
@@ -83,6 +91,8 @@
 		BA95E7E421C4FB600013E460 /* MetalImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalImageView.swift; sourceTree = "<group>"; };
 		BAAE778121D49316004E0245 /* HorseStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HorseStyle.mlmodel; sourceTree = "<group>"; };
 		BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BAB70A41222F8DAE009A7F03 /* VideoReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoReader.swift; sourceTree = "<group>"; };
+		BAB70A43222F8F91009A7F03 /* VideoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWriter.swift; sourceTree = "<group>"; };
 		BABF5D102204B3C9003D222C /* VisualismTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualismTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABF5D122204B3C9003D222C /* VisualismTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualismTests.swift; sourceTree = "<group>"; };
 		BABF5D142204B3C9003D222C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,6 +216,8 @@
 		BA95E7CD21C4F2FA0013E460 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAB70A43222F8F91009A7F03 /* VideoWriter.swift */,
+				BAB70A41222F8DAE009A7F03 /* VideoReader.swift */,
 				BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */,
 				BA95E7E421C4FB600013E460 /* MetalImageView.swift */,
 				BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */,
@@ -218,8 +230,10 @@
 		BA95E7CE21C4F3020013E460 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
 				BA313B7421D9F71E00AE7929 /* MainViewController.swift */,
+				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
+				BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */,
+				BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */,
 				BA95E7A621C4F0950013E460 /* Main.storyboard */,
 			);
 			path = Controller;
@@ -228,6 +242,7 @@
 		BA95E7CF21C4F3140013E460 /* CoreML Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA6568EA2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel */,
 				BA89432121DBD3E700A521C9 /* OldManStyle.mlmodel */,
 				BA0381AD21D37D4800019652 /* AvignonStyle.mlmodel */,
 				BA0381C621D4007900019652 /* GrayTreeStyle.mlmodel */,
@@ -416,13 +431,18 @@
 				BA95E7CC21C4F2F30013E460 /* VideoCaptureView.swift in Sources */,
 				BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */,
 				BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */,
+				BA6568EB2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */,
 				BA78C35B21DE201A00BA2732 /* MorningStyle.mlmodel in Sources */,
 				BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */,
+				BAB70A42222F8DAE009A7F03 /* VideoReader.swift in Sources */,
+				BA1DC868222C6FCB001F904D /* AttachmentHandler.swift in Sources */,
 				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,
 				BA0BDBCA21DDD98D0087A47B /* WomanStyle.mlmodel in Sources */,
+				BA6568E72231D0D800FBA6E7 /* ArtCollectionViewController.swift in Sources */,
 				BA89432221DBD3E700A521C9 /* OldManStyle.mlmodel in Sources */,
 				BA95E7C721C4F2620013E460 /* VisualismViewController.swift in Sources */,
 				BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */,
+				BAB70A44222F8F91009A7F03 /* VideoWriter.swift in Sources */,
 				BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

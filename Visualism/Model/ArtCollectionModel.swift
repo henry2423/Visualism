@@ -21,7 +21,7 @@ public enum ArtStyles: String, CaseIterable {
     var getMLModel: MLModel {
         switch self {
         case .Avigon:
-            return AvignonStyle().model
+            return starry_night_640x480_small_a03_q8().model
         case .Gray_tree:
             return GrayTreeStyle().model
         case .Horse:

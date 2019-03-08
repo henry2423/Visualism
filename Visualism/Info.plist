@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your photo</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Use your photo libaray to save your image</string>
+	<string>$(PRODUCT_NAME) would like to access your photo</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Use your camera to transfer the style</string>
+	<string>$(PRODUCT_NAME) would like to access your camera</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -3,7 +3,7 @@ import AVFoundation
 import CoreVideo
 
 public protocol VideoCaptureDelegate: class {
-    func videoCapture(_ capture: VideoCaptureView, didCaptureVideoFrame: CVImageBuffer?)
+    func videoCapture(_ capture: VideoCaptureView, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?)
 }
 
 public class VideoCaptureView: NSObject {

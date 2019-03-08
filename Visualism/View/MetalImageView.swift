@@ -107,6 +107,8 @@ class MetalImageView: MTKView {
 
         commandBuffer?.present(drawable)
         commandBuffer?.commit()
+        //commandBuffer?.waitUntilCompleted()
+        
     }
     
     // MARK: - Supporting methods
