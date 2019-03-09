@@ -17,6 +17,7 @@ class StyleVideoConverterViewController: UIViewController {
     var progressLabel: UILabel!
     var maxFrame: Int = 0
     var videoURL: URL!
+    var videoFrameSize: CGRect!
     var model: MLModel!
     private let converterQueue = DispatchQueue(label: "com.henrystime.videoConvert")
     
@@ -103,7 +104,7 @@ extension StyleVideoConverterViewController {
     
     func converterVideo() {
         let asset = AVAsset(url: videoURL)
-        guard let videoReader = VideoReader(videoAsset: asset) else {
+        guard let videoReader = AssetReader(asset: asset, withType: .video) else {
             fatalError()
         }
         
@@ -120,31 +121,121 @@ extension StyleVideoConverterViewController {
         
         var frames = 0
         self.maxFrame = Int(videoReader.totalFrames)
+
         while true {
-            guard let frame = videoReader.nextFrame() else {
+            guard let videoFrame = videoReader.nextFrame() else {
                 break
             }
             
-            let buffer = CMSampleBufferGetImageBuffer(frame)
+            let buffer = CMSampleBufferGetImageBuffer(videoFrame)
             if frames == 0 {
                 // Setup videoWrite for the first time
-                videoWriter.start(withSize: CVImageBufferGetCleanRect(buffer!), at: self.filePathUrl())
+                self.videoFrameSize = CVImageBufferGetCleanRect(buffer!)
+                videoWriter.start(withSize: videoFrameSize, at: self.filePathUrl())
             }
             // Transfer Style
             let stylePixelBuffer = self.predictUsingVision(with: buffer! as CVPixelBuffer)
             // Appned Style Image to videoWriter
-            let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(frame)
-            videoWriter.append(stylePixelBuffer!, currentSampleTime: sampleTime)
-            
+            let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(videoFrame)
+            videoWriter.append(pixelBuffer: stylePixelBuffer!, currentSampleTime: sampleTime)
+
             frames += 1
             self.updateProgress(withCurrentFrame: frames)
         }
         
-        videoWriter.stop(at: self.filePathUrl(), audioURL: self.videoURL) {
-            let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-            self.present(alert, animated: true)
+        videoWriter.stop() {
+            self.mergeFilesWithUrl(videoUrl: self.filePathUrl(), audioUrl: self.videoURL, completed: { (mixURL) in
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: mixURL)
+                }) { saved, error in
+                    if saved {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            })
         }
+        
+    }
+    
+    // MARK: Audio Mixing
+    // Ref: https://stackoverflow.com/questions/31984474/swift-merge-audio-and-video-files-into-one-video
+    func mergeFilesWithUrl(videoUrl: URL, audioUrl: URL, completed: @escaping (URL) -> Void){
+        let mixComposition : AVMutableComposition = AVMutableComposition()
+        var mutableCompositionVideoTrack : [AVMutableCompositionTrack] = []
+        var mutableCompositionAudioTrack : [AVMutableCompositionTrack] = []
+        let totalVideoCompositionInstruction : AVMutableVideoCompositionInstruction = AVMutableVideoCompositionInstruction()
+        
+        //start merge
+        let aVideoAsset : AVAsset = AVAsset(url: videoUrl)
+        let aAudioAsset : AVAsset = AVAsset(url: audioUrl)
+        
+        mutableCompositionVideoTrack.append(mixComposition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)!)
+        mutableCompositionAudioTrack.append( mixComposition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)!)
+        
+        let aVideoAssetTrack : AVAssetTrack = aVideoAsset.tracks(withMediaType: AVMediaType.video)[0]
+        let aAudioAssetTrack : AVAssetTrack = aAudioAsset.tracks(withMediaType: AVMediaType.audio)[0]
+        
+        
+        
+        do{
+            try mutableCompositionVideoTrack[0].insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aVideoAssetTrack, at: CMTime.zero)
+            
+            //if audio file is longer then video file, use videoAsset duration instead of audioAsset duration
+            try mutableCompositionAudioTrack[0].insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aAudioAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: CMTime.zero)
+        }catch{
+            
+        }
+        
+        totalVideoCompositionInstruction.timeRange = CMTimeRangeMake(start: CMTime.zero,duration: aVideoAssetTrack.timeRange.duration )
+        
+        let mutableVideoComposition : AVMutableVideoComposition = AVMutableVideoComposition()
+        mutableVideoComposition.frameDuration = CMTimeMake(value: 1, timescale: 60)
+        
+        mutableVideoComposition.renderSize = CGSize(width: videoFrameSize.width, height: videoFrameSize.height)
+        
+        //find your video on this URl
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as String
+        let filePath : String = "\(documentsDirectory)/styleVideowithAudio.mp4"
+        let savePathUrl = URL(fileURLWithPath: filePath)
+        
+        do {
+            if FileManager.default.fileExists(atPath: filePath) {
+                try FileManager.default.removeItem(atPath: filePath)
+                print("old styleVideowithAudio file removed")
+            }
+        } catch {
+            print(error)
+        }
+        
+        
+        let assetExport: AVAssetExportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality)!
+        assetExport.outputFileType = AVFileType.mp4
+        assetExport.outputURL = savePathUrl
+        assetExport.shouldOptimizeForNetworkUse = false
+        
+        assetExport.exportAsynchronously { () -> Void in
+            switch assetExport.status {
+                
+            case AVAssetExportSession.Status.completed:
+                //Uncomment this if u want to store your video in asset
+                //let assetsLib = ALAssetsLibrary()
+                //assetsLib.writeVideoAtPathToSavedPhotosAlbum(savePathUrl, completionBlock: nil)
+                print("success")
+                completed(savePathUrl)
+            case  AVAssetExportSession.Status.failed:
+                print("failed \(String(describing: assetExport.error))")
+            case AVAssetExportSession.Status.cancelled:
+                print("cancelled \(String(describing: assetExport.error))")
+            default:
+                print("complete")
+            }
+        }
+        
         
     }
     

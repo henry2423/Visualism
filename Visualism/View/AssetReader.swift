@@ -9,11 +9,11 @@ import Foundation
 import AVFoundation
 import Darwin
 
-internal class VideoReader {
+class AssetReader {
     static private let millisecondsInSecond: Float32 = 1000.0
     
     var frameRateInSeconds: Float32 {
-        return self.videoTrack.nominalFrameRate
+        return self.assetTrack.nominalFrameRate
     }
     
 //    var frameRateInSeconds: Float32 {
@@ -21,7 +21,7 @@ internal class VideoReader {
 //    }
 //
     var durationInSeconds: Float32 {
-        return Float32(CMTimeGetSeconds(self.videoAsset.duration))
+        return Float32(CMTimeGetSeconds(self.asset.duration))
     }
     
     var totalFrames: Float32 {
@@ -29,7 +29,7 @@ internal class VideoReader {
     }
     
     var affineTransform: CGAffineTransform {
-        return self.videoTrack.preferredTransform.inverted()
+        return self.assetTrack.preferredTransform.inverted()
     }
     
     var orientation: CGImagePropertyOrientation {
@@ -54,15 +54,15 @@ internal class VideoReader {
         return CGImagePropertyOrientation(rawValue: orientation)!
     }
     
-    private var videoAsset: AVAsset!
-    private var videoTrack: AVAssetTrack!
+    private var asset: AVAsset!
+    private var assetTrack: AVAssetTrack!
     private var assetReader: AVAssetReader!
-    private var videoAssetReaderOutput: AVAssetReaderTrackOutput!
+    private var assetReaderOutput: AVAssetReaderTrackOutput!
     
-    init?(videoAsset: AVAsset) {
-        self.videoAsset = videoAsset
-        let array = self.videoAsset.tracks(withMediaType: AVMediaType.video)
-        self.videoTrack = array[0]
+    init?(asset: AVAsset, withType MediaType: AVMediaType) {
+        self.asset = asset
+        let array = self.asset.tracks(withMediaType: MediaType)
+        self.assetTrack = array[0]
         
         guard self.restartReading() else {
             return nil
@@ -71,30 +71,42 @@ internal class VideoReader {
     
     func restartReading() -> Bool {
         do {
-            self.assetReader = try AVAssetReader(asset: videoAsset)
+            self.assetReader = try AVAssetReader(asset: asset)
         } catch {
             print("Failed to create AVAssetReader object: \(error)")
             return false
         }
         
-        self.videoAssetReaderOutput = AVAssetReaderTrackOutput(track: self.videoTrack, outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
-        guard self.videoAssetReaderOutput != nil else {
+        switch self.assetTrack.mediaType {
+        case .video:
+            self.assetReaderOutput = AVAssetReaderTrackOutput(track: self.assetTrack, outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA])
+            guard self.assetReaderOutput != nil else {
+                return false
+            }
+        case .audio:
+            // Currently Not available
+            fatalError()
+//            self.assetReaderOutput = AVAssetReaderTrackOutput(track: self.assetTrack, outputSettings: [AVFormatIDKey as String: kAudioFormatLinearPCM])
+//            guard self.assetReaderOutput != nil else {
+//                return false
+//            }
+        default:
+            fatalError()
+        }
+        
+        self.assetReaderOutput.alwaysCopiesSampleData = true
+        
+        guard self.assetReader.canAdd(assetReaderOutput) else {
             return false
         }
         
-        self.videoAssetReaderOutput.alwaysCopiesSampleData = true
-        
-        guard self.assetReader.canAdd(videoAssetReaderOutput) else {
-            return false
-        }
-        
-        self.assetReader.add(videoAssetReaderOutput)
+        self.assetReader.add(assetReaderOutput)
         
         return self.assetReader.startReading()
     }
     
     func nextFrame() -> CMSampleBuffer? {
-        guard let sampleBuffer = self.videoAssetReaderOutput.copyNextSampleBuffer() else {
+        guard let sampleBuffer = self.assetReaderOutput.copyNextSampleBuffer() else {
             return nil
         }
         

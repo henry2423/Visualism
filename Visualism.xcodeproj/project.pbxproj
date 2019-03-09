@@ -40,7 +40,7 @@
 		BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95E7E421C4FB600013E460 /* MetalImageView.swift */; };
 		BAAE778221D49317004E0245 /* HorseStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BAAE778121D49316004E0245 /* HorseStyle.mlmodel */; };
 		BAAFAEE121DD413C00F8BA7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */; };
-		BAB70A42222F8DAE009A7F03 /* VideoReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A41222F8DAE009A7F03 /* VideoReader.swift */; };
+		BAB70A42222F8DAE009A7F03 /* AssetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A41222F8DAE009A7F03 /* AssetReader.swift */; };
 		BAB70A44222F8F91009A7F03 /* VideoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A43222F8F91009A7F03 /* VideoWriter.swift */; };
 		BABF5D132204B3C9003D222C /* VisualismTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABF5D122204B3C9003D222C /* VisualismTests.swift */; };
 		BAD098862233359100A35131 /* StyleVideoConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD098852233359100A35131 /* StyleVideoConverterViewController.swift */; };
@@ -92,7 +92,7 @@
 		BA95E7E421C4FB600013E460 /* MetalImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalImageView.swift; sourceTree = "<group>"; };
 		BAAE778121D49316004E0245 /* HorseStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HorseStyle.mlmodel; sourceTree = "<group>"; };
 		BAAFAEE021DD413C00F8BA7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BAB70A41222F8DAE009A7F03 /* VideoReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoReader.swift; sourceTree = "<group>"; };
+		BAB70A41222F8DAE009A7F03 /* AssetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetReader.swift; sourceTree = "<group>"; };
 		BAB70A43222F8F91009A7F03 /* VideoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWriter.swift; sourceTree = "<group>"; };
 		BABF5D102204B3C9003D222C /* VisualismTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualismTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABF5D122204B3C9003D222C /* VisualismTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualismTests.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BAB70A43222F8F91009A7F03 /* VideoWriter.swift */,
-				BAB70A41222F8DAE009A7F03 /* VideoReader.swift */,
+				BAB70A41222F8DAE009A7F03 /* AssetReader.swift */,
 				BA95E7CA21C4F2F30013E460 /* VideoCaptureView.swift */,
 				BA95E7E421C4FB600013E460 /* MetalImageView.swift */,
 				BA7C7F9921D9202700776DF2 /* BarCollectionView.swift */,
@@ -438,7 +438,7 @@
 				BA6568EB2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */,
 				BA78C35B21DE201A00BA2732 /* MorningStyle.mlmodel in Sources */,
 				BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */,
-				BAB70A42222F8DAE009A7F03 /* VideoReader.swift in Sources */,
+				BAB70A42222F8DAE009A7F03 /* AssetReader.swift in Sources */,
 				BA1DC868222C6FCB001F904D /* AttachmentHandler.swift in Sources */,
 				BA0381C421D3C41500019652 /* ArtCollectionCell.swift in Sources */,
 				BA0BDBCA21DDD98D0087A47B /* WomanStyle.mlmodel in Sources */,
