@@ -15,7 +15,10 @@ class ArtCollectionViewController: UIViewController {
         
     var videoURL: URL!
     let ArtCollectionViewCellSpacingFullScreen: CGFloat = 8.0
+    var collectionViewBounds: CGRect!
     var collectionView: UICollectionView!
+    var closeBarButton: UIButton!
+    
     
     init(withURL url: URL) {
         self.videoURL = url
@@ -30,23 +33,40 @@ class ArtCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.black
+        
         // UICollectionView
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width/2-20, height: UIScreen.main.bounds.height/3-30)
+        layout.itemSize = CGSize(width: self.view.bounds.width/2-20, height: self.view.bounds.height/3-30)
         layout.minimumLineSpacing = 20
-        self.collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        self.collectionViewBounds = CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY + 90, width: self.view.bounds.width, height: self.view.bounds.height - 90)
+        self.collectionView = UICollectionView(frame: collectionViewBounds, collectionViewLayout: layout)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "ArtCollectionCell", bundle: nil), forCellWithReuseIdentifier: ArtCollectionReuseIdentifier)
         self.collectionView.backgroundColor = UIColor.black
         self.view.addSubview(collectionView)
+        
+        // Add Close Button
+        closeBarButton = UIButton()
+        closeBarButton.setImage(UIImage(named: "Icon-Aarrow-Down")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        closeBarButton.tintColor = UIColor.white
+        closeBarButton.addTarget(self, action: #selector(closeButtonTapHandler(_:)), for: .touchUpInside)
+        closeBarButton.frame = CGRect(x: 30, y: UIApplication.shared.statusBarFrame.height, width: 45, height: 45)
+        closeBarButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        closeBarButton.layer.cornerRadius = 45/2
+        closeBarButton.layer.masksToBounds = true
+        self.view.addSubview(closeBarButton)
     }
     
     // MARK: - UI stuff
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.collectionView.frame = view.bounds
+        self.collectionView.frame = self.collectionViewBounds
+    }
+    
+    @objc func closeButtonTapHandler(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -71,7 +91,12 @@ extension ArtCollectionViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let style = ArtStyles.allCases[indexPath.item]
-        self.present(StyleVideoConverterViewController(withStyle: style, withURL: videoURL), animated: true, completion: nil)
+        self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.providesPresentationContextTransitionStyle = true
+        self.definesPresentationContext = true
+        let vc = StyleVideoConverterViewController(withStyle: style, withURL: videoURL)
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(vc, animated: false, completion: nil)
     }
 
 }

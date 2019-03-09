@@ -32,6 +32,10 @@ class AttachmentHandler: NSObject{
         case camera, video, photoLibrary
     }
     
+    deinit {
+        print("AttachmentHandler Deinit")
+    }
+    
     //MARK: - Constants
     struct Constants {
         static let actionFileTypeHeading = "Add a File"

@@ -15,7 +15,7 @@ class StyleVideoConverterViewController: UIViewController {
     
     var progressView: UIProgressView!
     var progressLabel: UILabel!
-    var maxFrame: Int = 0
+    var maxFrame: Float = 1.0
     var videoURL: URL!
     var videoFrameSize: CGRect!
     var model: MLModel!
@@ -34,7 +34,7 @@ class StyleVideoConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellow
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.65)
         
         // Add ProgressView
         progressView = UIProgressView(progressViewStyle: .bar)
@@ -49,9 +49,9 @@ class StyleVideoConverterViewController: UIViewController {
         // Add ProgressLabel
         progressLabel = UILabel()
         //progressLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        progressLabel.textColor = UIColor.black
+        progressLabel.textColor = UIColor.white
         progressLabel.textAlignment = .center
-        progressLabel.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 + 3, width: 100, height: 50)
+        progressLabel.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2, width: 100, height: 50)
         progressLabel.text = "0%"
         progressLabel.isHidden = false
         self.view.addSubview(progressLabel)
@@ -65,10 +65,10 @@ class StyleVideoConverterViewController: UIViewController {
         }
     }
     
-    func updateProgress(withCurrentFrame frame: Int) {
+    func updateProgress(withCurrentFrame frame: Float) {
         DispatchQueue.main.async { [weak self] in
-            self?.progressView.setProgress(Float(frame)/Float(self!.maxFrame), animated: true)
-            self?.progressLabel.text = "\(Int(Float(frame)/Float(self!.maxFrame) * 100))%"
+            self?.progressView.setProgress(frame/self!.maxFrame, animated: true)
+            self?.progressLabel.text = "\(Int(frame/self!.maxFrame * 100))%"
         }
     }
     
@@ -119,8 +119,8 @@ extension StyleVideoConverterViewController {
         
         let videoWriter = VideoWriter()
         
-        var frames = 0
-        self.maxFrame = Int(videoReader.totalFrames)
+        var frames: Float = 1.0
+        self.maxFrame = videoReader.totalFrames
 
         while true {
             guard let videoFrame = videoReader.nextFrame() else {
@@ -128,7 +128,7 @@ extension StyleVideoConverterViewController {
             }
             
             let buffer = CMSampleBufferGetImageBuffer(videoFrame)
-            if frames == 0 {
+            if frames == 1.0 {
                 // Setup videoWrite for the first time
                 self.videoFrameSize = CVImageBufferGetCleanRect(buffer!)
                 videoWriter.start(withSize: videoFrameSize, at: self.filePathUrl())
@@ -139,7 +139,7 @@ extension StyleVideoConverterViewController {
             let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(videoFrame)
             videoWriter.append(pixelBuffer: stylePixelBuffer!, currentSampleTime: sampleTime)
 
-            frames += 1
+            frames += 1.0
             self.updateProgress(withCurrentFrame: frames)
         }
         
@@ -151,8 +151,10 @@ extension StyleVideoConverterViewController {
                     if saved {
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-                            self.present(alert, animated: true)
+                            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { _ in
+                                self.dismiss(animated: true, completion: nil)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     }
                 }
@@ -176,6 +178,7 @@ extension StyleVideoConverterViewController {
         mutableCompositionVideoTrack.append(mixComposition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)!)
         mutableCompositionAudioTrack.append( mixComposition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)!)
         
+        // FIXME: If No Audio in the audioUrl
         let aVideoAssetTrack : AVAssetTrack = aVideoAsset.tracks(withMediaType: AVMediaType.video)[0]
         let aAudioAssetTrack : AVAssetTrack = aAudioAsset.tracks(withMediaType: AVMediaType.audio)[0]
         
@@ -185,7 +188,7 @@ extension StyleVideoConverterViewController {
             try mutableCompositionVideoTrack[0].insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aVideoAssetTrack, at: CMTime.zero)
             
             //if audio file is longer then video file, use videoAsset duration instead of audioAsset duration
-            try mutableCompositionAudioTrack[0].insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aAudioAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: CMTime.zero)
+            try mutableCompositionAudioTrack[0].insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: CMTime.zero)
         }catch{
             
         }

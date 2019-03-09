@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     lazy var mirrorAnimation: LOTAnimationView! = LOTAnimationView(name: "kagami_mirror_lens_flare")
     var actionButton: UIButton!
     
+    // MARK: - UI stuff
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +52,10 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.mirrorAnimation.play()
         self.swipeUpAnimation.play()
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     @objc func actionButtonTapHandler(_ sender: UIBarButtonItem) {

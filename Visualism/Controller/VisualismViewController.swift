@@ -223,6 +223,10 @@ class VisualismViewController: UIViewController {
         metalView.frame = view.bounds
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
