@@ -12,12 +12,20 @@ import Darwin
 internal class VideoReader {
     static private let millisecondsInSecond: Float32 = 1000.0
     
-    var frameRateInMilliseconds: Float32 {
+    var frameRateInSeconds: Float32 {
         return self.videoTrack.nominalFrameRate
     }
     
-    var frameRateInSeconds: Float32 {
-        return self.frameRateInMilliseconds * VideoReader.millisecondsInSecond
+//    var frameRateInSeconds: Float32 {
+//        return self.frameRateInMilliseconds / VideoReader.millisecondsInSecond
+//    }
+//
+    var durationInSeconds: Float32 {
+        return Float32(CMTimeGetSeconds(self.videoAsset.duration))
+    }
+    
+    var totalFrames: Float32 {
+        return self.durationInSeconds * self.frameRateInSeconds
     }
     
     var affineTransform: CGAffineTransform {

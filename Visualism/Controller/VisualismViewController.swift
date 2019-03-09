@@ -300,4 +300,3 @@ class StyleInput : MLFeatureProvider {
         self.image = image
     }
 }
-

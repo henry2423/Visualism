@@ -62,9 +62,11 @@ class MetalImageView: MTKView {
         guard let image = self.image, let colorSpace = image.colorSpace else {
             return
         }
+        #if !targetEnvironment(simulator)
         guard let drawable = self.currentDrawable, let texture = self.currentDrawable?.texture else {
             return
         }
+
         
         let commandBuffer = commandQueue.makeCommandBuffer()
         
@@ -107,6 +109,7 @@ class MetalImageView: MTKView {
 
         commandBuffer?.present(drawable)
         commandBuffer?.commit()
+        #endif
         //commandBuffer?.waitUntilCompleted()
         
     }

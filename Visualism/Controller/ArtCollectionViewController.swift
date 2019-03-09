@@ -8,17 +8,11 @@
 
 import Foundation
 import UIKit
-import AVKit
-import Photos
-import Vision
-
 
 private let ArtCollectionReuseIdentifier = "ArtCollectionCell"
 
 class ArtCollectionViewController: UIViewController {
-    
-    var model: MLModel!
-    
+        
     var videoURL: URL!
     let ArtCollectionViewCellSpacingFullScreen: CGFloat = 8.0
     var collectionView: UICollectionView!
@@ -54,18 +48,6 @@ class ArtCollectionViewController: UIViewController {
         super.viewWillLayoutSubviews()
         self.collectionView.frame = view.bounds
     }
-    
-    // MARK: Temp Video Converter URL
-    func filePath() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as String
-        let filePath : String = "\(documentsDirectory)/styleVideo.mp4"
-        return filePath
-    }
-    
-    func filePathUrl() -> URL! {
-        return URL(fileURLWithPath: self.filePath())
-    }
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate
@@ -88,77 +70,8 @@ extension ArtCollectionViewController: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.model = ArtStyles.allCases[indexPath.item].getMLModel
-        self.converterVideo()
+        let style = ArtStyles.allCases[indexPath.item]
+        self.present(StyleVideoConverterViewController(withStyle: style, withURL: videoURL), animated: true, completion: nil)
     }
 
-}
-
-// MARK: Model Inference
-extension ArtCollectionViewController {
-    
-    // MARK: - Doing inference
-    func predictUsingVision(with buffer: CVPixelBuffer) -> CVPixelBuffer? {
-        
-        do {
-            let predictionOutput = try model.prediction(from: StyleInput(image: buffer))
-            return predictionOutput.featureValue(for: "stylizedImage")!.imageBufferValue!
-        } catch let error as NSError {
-            print("CoreML Model Error: \(error)")
-        }
-        
-        return nil
-    }
-    
-    func converterVideo() {
-        let asset = AVAsset(url: videoURL)
-        guard let videoReader = VideoReader(videoAsset: asset) else {
-            fatalError()
-        }
-        
-        do {
-            if FileManager.default.fileExists(atPath: self.filePath()) {
-                try FileManager.default.removeItem(atPath: self.filePath())
-                print("file removed")
-            }
-        } catch {
-            print(error)
-        }
-        
-        let videoWriter = VideoWriter()
-        
-        var frames = 0
-        while true {
-            guard let frame = videoReader.nextFrame() else {
-                break
-            }
-            
-            let buffer = CMSampleBufferGetImageBuffer(frame)
-            if frames == 0 {
-                // Setup videoWrite for the first time
-                videoWriter.start(withSize: CVImageBufferGetCleanRect(buffer!), at: self.filePathUrl())
-            }
-            // Transfer Style
-            let stylePixelBuffer = self.predictUsingVision(with: buffer! as CVPixelBuffer)
-            // Appned Style Image to videoWriter
-            let sampleTime =  CMSampleBufferGetOutputPresentationTimeStamp(frame)
-            videoWriter.append(stylePixelBuffer!, currentSampleTime: sampleTime)
-            
-            frames += 1
-            print(frames)
-        }
-        
-        videoWriter.stop(at: self.filePathUrl(), audioURL: self.videoURL)
-        let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
-}
-
-
-// MARK: Audio Mixing
-extension ArtCollectionViewController {
-    
-    
 }

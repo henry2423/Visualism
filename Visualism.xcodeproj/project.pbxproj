@@ -43,6 +43,7 @@
 		BAB70A42222F8DAE009A7F03 /* VideoReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A41222F8DAE009A7F03 /* VideoReader.swift */; };
 		BAB70A44222F8F91009A7F03 /* VideoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70A43222F8F91009A7F03 /* VideoWriter.swift */; };
 		BABF5D132204B3C9003D222C /* VisualismTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABF5D122204B3C9003D222C /* VisualismTests.swift */; };
+		BAD098862233359100A35131 /* StyleVideoConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD098852233359100A35131 /* StyleVideoConverterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		BABF5D102204B3C9003D222C /* VisualismTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisualismTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABF5D122204B3C9003D222C /* VisualismTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualismTests.swift; sourceTree = "<group>"; };
 		BABF5D142204B3C9003D222C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAD098852233359100A35131 /* StyleVideoConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleVideoConverterViewController.swift; sourceTree = "<group>"; };
 		D1D40F29EA9DBC080B97A677 /* Pods_Visualism.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Visualism.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF3C5DB1F898C8062B1C048 /* Pods-Visualism.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visualism.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Visualism/Pods-Visualism.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 				BA95E7C621C4F2620013E460 /* VisualismViewController.swift */,
 				BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */,
 				BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */,
+				BAD098852233359100A35131 /* StyleVideoConverterViewController.swift */,
 				BA95E7A621C4F0950013E460 /* Main.storyboard */,
 			);
 			path = Controller;
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD098862233359100A35131 /* StyleVideoConverterViewController.swift in Sources */,
 				BA7C7F9A21D9202700776DF2 /* BarCollectionView.swift in Sources */,
 				BA0381CF21D403BF00019652 /* ArtCollectionModel.swift in Sources */,
 				BA95E7E521C4FB600013E460 /* MetalImageView.swift in Sources */,

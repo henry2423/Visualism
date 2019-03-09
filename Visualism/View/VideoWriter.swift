@@ -92,7 +92,7 @@ class VideoWriter : NSObject {
     }
     
     // MARK: Stop recording
-    func stop(at url: URL, audioURL: URL) {
+    func stop(at url: URL, audioURL: URL, completed: @escaping () -> Void) {
         print("marked as finished")
         videoWriter.finishWriting {
             self.mergeFilesWithUrl(videoUrl: url, audioUrl: audioURL, completed: { (mixURL) in
@@ -100,13 +100,14 @@ class VideoWriter : NSObject {
                     PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: mixURL)
                 }) { saved, error in
                     if saved {
-                        print("Finished")
+                        completed()
                     }
                 }
             })
         }
     }
     
+    // MARK: Audio Mixing
     // Ref: https://stackoverflow.com/questions/31984474/swift-merge-audio-and-video-files-into-one-video
     func mergeFilesWithUrl(videoUrl: URL, audioUrl: URL, completed: @escaping (URL) -> Void){
         let mixComposition : AVMutableComposition = AVMutableComposition()
@@ -162,6 +163,16 @@ class VideoWriter : NSObject {
         let documentsDirectory = paths[0] as String
         let filePath : String = "\(documentsDirectory)/styleVideowithAudio.mp4"
         let savePathUrl = URL(fileURLWithPath: filePath)
+        
+        do {
+            if FileManager.default.fileExists(atPath: filePath) {
+                try FileManager.default.removeItem(atPath: filePath)
+                print("old styleVideowithAudio file removed")
+            }
+        } catch {
+            print(error)
+        }
+        
         
         let assetExport: AVAssetExportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality)!
         assetExport.outputFileType = AVFileType.mp4
