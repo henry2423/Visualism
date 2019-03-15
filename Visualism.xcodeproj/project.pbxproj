@@ -23,6 +23,7 @@
 		BA129A2F21D4D648004B99BD /* LionStyle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */; };
 		BA1DC868222C6FCB001F904D /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */; };
 		BA313B7521D9F71E00AE7929 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA313B7421D9F71E00AE7929 /* MainViewController.swift */; };
+		BA39185B2236B8EC00141555 /* WomanStyle2Flex.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA39185A2236B8EC00141555 /* WomanStyle2Flex.mlmodel */; };
 		BA6568E72231D0D800FBA6E7 /* ArtCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */; };
 		BA6568EB2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BA6568EA2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel */; };
 		BA77778721DB7C530051A950 /* hand_swipe_up_gesture.json in Resources */ = {isa = PBXBuildFile; fileRef = BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */; };
@@ -73,6 +74,7 @@
 		BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LionStyle.mlmodel; sourceTree = "<group>"; };
 		BA1DC867222C6FCB001F904D /* AttachmentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
 		BA313B7421D9F71E00AE7929 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BA39185A2236B8EC00141555 /* WomanStyle2Flex.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WomanStyle2Flex.mlmodel; sourceTree = "<group>"; };
 		BA6568E62231D0D800FBA6E7 /* ArtCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollectionViewController.swift; sourceTree = "<group>"; };
 		BA6568EA2231EBBF00FBA6E7 /* starry_night_640x480_small_a03_q8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = starry_night_640x480_small_a03_q8.mlmodel; sourceTree = "<group>"; };
 		BA77778621DB7C530051A950 /* hand_swipe_up_gesture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hand_swipe_up_gesture.json; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				BA129A2D21D4D648004B99BD /* LionStyle.mlmodel */,
 				BA0BDBC921DDD98D0087A47B /* WomanStyle.mlmodel */,
 				BA78C35A21DE201A00BA2732 /* MorningStyle.mlmodel */,
+				BA39185A2236B8EC00141555 /* WomanStyle2Flex.mlmodel */,
 			);
 			path = "CoreML Model";
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				BA0381C721D4007900019652 /* GrayTreeStyle.mlmodel in Sources */,
 				BAB70A44222F8F91009A7F03 /* VideoWriter.swift in Sources */,
 				BA0381AE21D37D4800019652 /* AvignonStyle.mlmodel in Sources */,
+				BA39185B2236B8EC00141555 /* WomanStyle2Flex.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

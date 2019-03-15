@@ -152,7 +152,7 @@ extension StyleVideoConverterViewController {
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Video Saved", message: "Your Style Video has been saved", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { _ in
-                                self.dismiss(animated: true, completion: nil)
+                                self.dismiss(animated: false, completion: nil)
                             }))
                             self.present(alert, animated: true, completion: nil)
                         }

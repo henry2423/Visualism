@@ -31,7 +31,7 @@ public enum ArtStyles: String, CaseIterable {
         case .OldMan:
             return OldManStyle().model
         case .Woman:
-            return WomanStyle().model
+            return WomanStyle2Flex().model
         }
     }
 }

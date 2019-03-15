@@ -59,7 +59,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func actionButtonTapHandler(_ sender: UIBarButtonItem) {
-        
+        self.mirrorAnimation.stop()
+        self.swipeUpAnimation.stop()
         AttachmentHandler.shared.showAttachmentActionSheet(vc: self, button: actionButton)
         AttachmentHandler.shared.videoPickedBlock = { [weak self] (url) in
             self?.present(ArtCollectionViewController(withURL: url), animated: true, completion: nil)
